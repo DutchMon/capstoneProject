@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
     <>
       {loading ? (
         <Layout>
-          <div className="pageloader is-right-to-left" id="loaderToggle"><span class="title">Pageloader</span></div>
+          <div className="pageloader is-right-to-left" id="loaderToggle"><span class="title">Planting Crops</span></div>
         </Layout>
       ) : (
           <Component {...pageProps} />
