@@ -6,6 +6,7 @@ import '../sass/dashboard.sass'
 import { SWRConfig } from 'swr'
 import React from "react"
 import { Router } from "next/router"
+import Layout from '../components/layout'
 
 /*____________Realm App_____________*/
 
@@ -18,16 +19,23 @@ import { Router } from "next/router"
 
 /*_______________Functions_______________________*/
 
+const toggleActive = (e) => {
+    let showLoader = document.getElementById('loaderToggle');
+    showLoader.classList.toggle('is-active');
+}
+
+
 //Main Function
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(false);
   React.useEffect(() => {
     const start = () => {
-      console.log("start");
+      //console.log("start");
       setLoading(true);
+      toggleActive();
     };
     const end = () => {
-      console.log("findished");
+      //console.log("findished");
       setLoading(false);
     };
     Router.events.on("routeChangeStart", start);
@@ -39,13 +47,19 @@ function MyApp({ Component, pageProps }) {
       Router.events.off("routeChangeError", end);
     };
   }, []);
+
+
+
+
   return (
     <>
       {loading ? (
-        <div class="pageloader is-right-to-left is-active"><span class="title">Pageloader</span></div>
+        <Layout>
+          <div className="pageloader is-right-to-left" id="loaderToggle"><span class="title">Pageloader</span></div>
+        </Layout>
       ) : (
-        <Component {...pageProps} />
-      )}
+          <Component {...pageProps} />
+        )}
     </>
   )
 }
