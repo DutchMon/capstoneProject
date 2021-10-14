@@ -74,7 +74,7 @@ export async function getServerSideProps(context) {
     let url = `${server}/api/crops`;
 
     // request crop data from api
-    let response = await fetch(`http://capstone-project.xi.vercel.app/api/crops`);
+    let response = await fetch(`http://capstone-project-xi.vercel.app/api/crops`);
     // extract the data
     let data = await response.json();
     //console.log(data)
