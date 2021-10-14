@@ -68,7 +68,7 @@ export default function CropAnalyticsContent({ crops }) {
 }
 
 
-export async function getServerSideProps(context) {
+export async function getInitialProps(context) {
     // get the current environment
     let dev = process.env.NODE_ENV !== 'production';
 
