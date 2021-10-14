@@ -47,7 +47,7 @@ export default function CropAnalyticsContent({ crops }) {
 
                 <section className="content is-medium">
 
-                    {crops && crops.length === 0 ? (
+                    {crops.length === 0 ? (
                         <h2>No crops have been added</h2>
                     ) : (
                             <ul>
