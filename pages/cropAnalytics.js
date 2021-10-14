@@ -47,7 +47,7 @@ export default function CropAnalyticsContent({ crops }) {
 
                 <section className="content is-medium">
 
-                    {crops.length === 0 ? (
+                    {crops && crops.length === 0 ? (
                         <h2>No crops have been added</h2>
                     ) : (
                             <ul>
@@ -68,7 +68,7 @@ export default function CropAnalyticsContent({ crops }) {
 }
 
 
-export async function getInitialProps(context) {
+export async function getServerSideProps(context) {
     // get the current environment
     let dev = process.env.NODE_ENV !== 'production';
 
