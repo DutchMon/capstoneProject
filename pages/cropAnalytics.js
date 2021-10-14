@@ -71,10 +71,9 @@ export default function CropAnalyticsContent({ crops }) {
 export async function getServerSideProps(context) {
     // get the current environment
     let dev = process.env.NODE_ENV !== 'production';
-    let url = `${server}/api/crops`;
 
     // request crop data from api
-    let response = await fetch(`http://capstone-project-xi.vercel.app/api/crops`);
+    let response = await fetch(`${server}/api/crops`);
     // extract the data
     let data = await response.json();
     //console.log(data)
