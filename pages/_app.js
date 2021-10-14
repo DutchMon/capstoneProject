@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <div class="pageloader is-right-to-left"><span class="title">Pageloader</span></div>
       ) : (
         <Component {...pageProps} />
       )}
