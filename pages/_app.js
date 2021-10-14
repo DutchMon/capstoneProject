@@ -44,7 +44,8 @@ function MyApp({ Component, pageProps }) {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-          <Component {...pageProps} />
+        <Component {...pageProps} />
+      )}
     </>
   )
 }
