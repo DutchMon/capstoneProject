@@ -1,4 +1,4 @@
-// .gitnignore
+# .gitnignore
 # next.js build output
 .next
 
