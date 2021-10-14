@@ -3,6 +3,7 @@
 import 'bulma/bulma.sass'
 import '../css/myStyles.css'
 import '../sass/mySassStyles.sass'
+import '../sass/dashboard.sass'
 import { SWRConfig } from 'swr'
 
 /*____________Realm App_____________*/
