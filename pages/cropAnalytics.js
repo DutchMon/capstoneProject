@@ -3,6 +3,7 @@
 import Layout from '../components/layout'
 import CropCard from '../components/CropCard'
 import CropCounter from '../components/CropCounter'
+import { server } from '../config'
 
 /*____________________________________*/
 
@@ -70,10 +71,9 @@ export default function CropAnalyticsContent({ crops }) {
 export async function getServerSideProps(context) {
     // get the current environment
     let dev = process.env.NODE_ENV !== 'production';
-    let { DEV_URL, PROD_URL } = process.env;
 
     // request crop data from api
-    let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/crops`);
+    let response = await fetch(`${server}/api/crops`);
     // extract the data
     let data = await response.json();
     //console.log(data)
