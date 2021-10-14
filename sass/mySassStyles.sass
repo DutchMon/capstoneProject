@@ -1,0 +1,17 @@
+@charset "utf-8"
+@import "../node_modules/bulma/bulma.sass"
+
+.menu-list
+  svg
+    padding: 0 0.75em
+    // Modifiers
+    &.is-active
+      background-color: $menu-item-active-background-color
+      color: $menu-item-active-color
+  span
+    &:hover
+      background-color: $menu-item-hover-background-color
+      color: $menu-item-hover-color
+    cursor: pointer
+  li
+    padding: .8em 0

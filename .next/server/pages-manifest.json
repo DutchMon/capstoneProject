@@ -1,0 +1,10 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/login": "pages/login.js",
+  "/cropAnalytics": "pages/cropAnalytics.js",
+  "/api/crops": "pages/api/crops.js",
+  "/addCrop": "pages/addCrop.js",
+  "/": "pages/index.js"
+}

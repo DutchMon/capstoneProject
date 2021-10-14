@@ -1,0 +1,42 @@
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-list {
+    display: flex;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul.login-list > li {
+    margin-right: 1rem;
+    display: flex;
+}
+
+ul.login-list > li:first-child {
+    margin-left: auto;
+}
+
+ul.login-list > li > a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+ul.login-list > li > a img {
+    margin-right: 1em;
+}
+
+/*------ Not Using but keep for reference
+
+ul.login-list > header {
+    padding: 0.2rem;
+    color: #fff;
+    background-color: #333;
+}
+
+*/
