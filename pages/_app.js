@@ -1,8 +1,8 @@
 /*____________Imports_____________*/
 
+import '../sass/my-sass-styles.sass'
 import 'bulma/bulma.sass'
 import '../css/myStyles.css'
-import '../sass/my-sass-styles.sass'
 import '../sass/dashboard.sass'
 import { SWRConfig } from 'swr'
 
