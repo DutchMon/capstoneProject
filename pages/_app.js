@@ -1,12 +1,11 @@
 /*____________Imports_____________*/
 
-//import 'bulma/css/bulma.css'
 import 'bulma/bulma.sass'
-import '../sass/dashboard.sass'
-import '../css/dashboard.css'
-import '../css/login.css'
-import '../sass/mySassStyles.sass'
-import '../css/cropCounter.css'
+import '../sass/Dashboard.sass'
+import '../css/Dashboard.css'
+import '../css/Login.css'
+import '../sass/MySassStyles.sass'
+import '../css/CropCounter.css'
 import { SWRConfig } from 'swr'
 
 /*____________Realm App_____________*/
