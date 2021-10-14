@@ -42,19 +42,19 @@ export default function CropCounter({ cropLength }) {
                 <div className="level is-mobile">
                     <div className="level-item has-text-centered">
                         <div>
-                            <span className="heading">Total Crops <PlantIcon></PlantIcon></span>
+                            <span className="heading">Total<PlantIcon></PlantIcon></span>
                             <p className="title">{cropLength}</p>
                         </div>
                     </div>
                     <div className="level-item has-text-centered">
                         <div>
-                            <span className="heading">Active Crops <PlantIcon></PlantIcon></span>
+                            <span className="heading">Active<PlantIcon></PlantIcon></span>
                             <p className="title">{cropLength}</p>
                         </div>
                     </div>
                     <div className="level-item has-text-centered">
                         <div>
-                            <span className="heading">Completed Crops <PlantIcon></PlantIcon></span>
+                            <span className="heading">Completed<PlantIcon></PlantIcon></span>
                             <p className="title">{cropLength}</p>
                         </div>
                     </div>
