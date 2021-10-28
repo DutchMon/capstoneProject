@@ -1,16 +1,12 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import Link from 'next/link'
-import useUser from '../lib/useUser'
-import { useRouter } from 'next/router'
-
 import Image from 'next/image'
 import ActiveLink from './ActiveLink'
 import agIcon from '../public/agIcon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faFileInvoice, faChartBar, faInbox, faPhotoFilm, faGears } from '@fortawesome/free-solid-svg-icons'
-
+import { getSession, signIn, signOut, useSession } from "next-auth/react"
 import { useOnClickOutside } from './hooks'
-
 
 
 function Logo() {
@@ -41,10 +37,9 @@ const closeBurger = (e) => {
 }
 
 const Header = () => {
-    const { user, mutateUser } = useUser()
-    const router = useRouter()
+    const { data: session } = useSession()
     const node = useRef();
-    useOnClickOutside(node, (e) => closeBurger() )
+    useOnClickOutside(node, (e) => closeBurger())
 
     return (
         <>
@@ -52,18 +47,37 @@ const Header = () => {
                 <div className="navbar-menu">
                     <div className="navbar-end">
                         <ul className="login-list">
-                            {!user?.isLoggedIn && (
-                                <li>
-                                    <Link href="/login">
-                                        <a>Login</a>
-                                    </Link>
-                                </li>
-                            )}
-                            <li>
-                                <a href="">
-                                    <img src="/farmerIcon.png" width="32" height="32" />
-                                </a>
-                            </li>
+                            {session ? (
+                                <>
+                                    <li className="welcomeSignOut">
+                                        <h3 id="loggedIn">Welcome, {session.user.name}</h3>
+                                        <button className="button is-link is-small" onClick={() => signOut()}>Sign Out</button>
+                                    </li>
+                                    <li>
+                                        <Image
+                                            className="roundProfilePic"
+                                            src={session.user.image}
+                                            alt="user profile picture"
+                                            width={50}
+                                            height={50}
+                                            layout='fixed'
+                                        />
+                                    </li>
+                                </>
+                            ) : (
+                                    <>
+                                        <li>
+                                            <Link href="/login">
+                                                <a>Login</a>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <img src="/farmerIcon.png" width="32" height="32" />
+                                            </a>
+                                        </li>
+                                    </>
+                                )}
                         </ul>
                     </div>
                 </div>
@@ -137,5 +151,10 @@ const Header = () => {
 
 export default Header
 
-
-
+export async function getServerSideProps(context) {
+    return {
+        props: {
+            session: await getSession(context),
+        },
+    }
+}

@@ -18,12 +18,10 @@ const LayoutLogin = ({ children }) => (
       <Navbar></Navbar>
             <div className="dashboard-main">
                 <Header />
-                <div className=" login-dashboard">
-                <section className="section login-center">
-                    <main>
-                        <div>{children}</div>
+                <div className="block flexGrow">
+                    <main className="centerLoginButtons">
+                        <div className="columns is-centered is-multiline">{children}</div>
                     </main>
-                </section>
                 </div>
                 <Footer></Footer>
             </div>

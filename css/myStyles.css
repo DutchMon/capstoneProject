@@ -16,6 +16,12 @@
 ul.login-list > li {
     margin-right: 1rem;
     display: flex;
+    align-items: center;
+}
+ul.login-list > li.welcomeSignOut {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 ul.login-list > li:first-child {
@@ -29,10 +35,29 @@ ul.login-list > li > a {
     align-items: center;
 }
 
+ul.login-list > li > h3 {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
 ul.login-list > li > a img {
     margin-right: 1em;
 }
 
+ul.login-list > li > div {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center;
+}
+.roundProfilePic {
+  border: #BAD924 !important;
+  border-style: solid !important;
+  border-width: 2px !important;
+  border-radius: 50%;
+  background-color: transparent;
+}
 
 /* dashboard */
 .is-scrollable {
@@ -106,7 +131,16 @@ ul.login-list > li > a img {
   top: 0;
 }
 .dashboard-main .footer {
-  flex: 1;
+  max-height: 20vh;
+}
+.dashboard-main .flexGrow {
+  flex-grow: 1;
+}
+.dashboard-main .centerLoginButtons {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .login-dashboard {
   flex: 1;
@@ -194,4 +228,11 @@ ul.login-list > li > a img {
   .pageloader {
     margin: 0 !important;
   }
+}
+
+/* Login Form */
+
+.loginForm {
+  display: flex;
+  flex-flow: column;
 }

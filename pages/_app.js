@@ -3,10 +3,11 @@
 import '../sass/my-sass-styles.sass'
 import '../css/myStyles.css'
 import '../sass/dashboard.sass'
-import { SWRConfig } from 'swr'
 import React from "react"
 import { Router } from "next/router"
 import Layout from '../components/layout'
+import { SessionProvider } from "next-auth/react"
+
 
 /*____________Realm App_____________*/
 
@@ -18,50 +19,53 @@ import Layout from '../components/layout'
 
 
 /*_______________Functions_______________________*/
-
 const toggleActive = (e) => {
-    let showLoader = document.getElementById('loaderToggle');
-    showLoader.classList.toggle('is-active');
+  let showLoader = document.getElementById('loaderToggle')
+  showLoader.classList.toggle('is-active')
 }
 
 
 //Main Function
-function MyApp({ Component, pageProps }) {
-  const [loading, setLoading] = React.useState(false);
+function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
+
+  const [loading, setLoading] = React.useState(false)
+
   React.useEffect(() => {
     const start = () => {
       //console.log("start");
-      setLoading(true);
-      toggleActive();
-    };
+      setLoading(true)
+      toggleActive()
+    }
     const end = () => {
       //console.log("findished");
-      setLoading(false);
-    };
-    Router.events.on("routeChangeStart", start);
-    Router.events.on("routeChangeComplete", end);
-    Router.events.on("routeChangeError", end);
+      setLoading(false)
+    }
+    Router.events.on("routeChangeStart", start)
+    Router.events.on("routeChangeComplete", end)
+    Router.events.on("routeChangeError", end)
     return () => {
-      Router.events.off("routeChangeStart", start);
-      Router.events.off("routeChangeComplete", end);
-      Router.events.off("routeChangeError", end);
-    };
-  }, []);
-
-
+      Router.events.off("routeChangeStart", start)
+      Router.events.off("routeChangeComplete", end)
+      Router.events.off("routeChangeError", end)
+    }
+  }, [])
 
 
   return (
-    <>
+    <SessionProvider session={session}>
       {loading ? (
         <Layout>
-          <div className="pageloader is-right-to-left" id="loaderToggle"><span class="title">Planting Crops</span></div>
+          <div className="pageloader is-right-to-left" id="loaderToggle"><span className="title">Planting Crops</span></div>
         </Layout>
       ) : (
           <Component {...pageProps} />
         )}
-    </>
+    </SessionProvider>
   )
 }
 
 export default MyApp;
+

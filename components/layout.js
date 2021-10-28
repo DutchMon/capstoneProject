@@ -18,9 +18,11 @@ const Layout = ({ children }) => (
       <Navbar></Navbar>
       <div className="dashboard-main is-scrollable">
         <Header />
-        <main>
-          <div>{children}</div>
-        </main>
+        <div className="block flexGrow">
+          <main>
+            <div>{children}</div>
+          </main>
+        </div>
         <Footer></Footer>
       </div>
     </div>
@@ -32,3 +34,4 @@ export default Layout
 Layout.propTypes = {
   children: PropTypes.node,
 }
+

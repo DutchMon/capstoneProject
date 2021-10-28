@@ -4,6 +4,7 @@ import Layout from '../components/layout'
 import CropCard from '../components/CropCard'
 import CropCounter from '../components/CropCounter'
 import { server } from '../config'
+import { getSession } from 'next-auth/react'
 
 /*____________________________________*/
 
@@ -68,19 +69,19 @@ export default function CropAnalyticsContent({ crops }) {
 }
 
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(ctx) {
     // get the current environment
-    let dev = process.env.NODE_ENV !== 'production';
+    let dev = process.env.NODE_ENV !== 'production'
 
     // request crop data from api
-    let response = await fetch(`${server}/api/crops`);
+    let response = await fetch(`${server}/api/crops`)
     // extract the data
-    let data = await response.json();
+    let data = await response.json()
     //console.log(data)
 
     return {
         props: {
-            crops: data['message'],
+            crops: data['message']
         },
-    };
+    }
 }

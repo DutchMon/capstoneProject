@@ -1,34 +1,56 @@
-import { useState } from 'react'
-import useUser from '../lib/useUser'
 import LayoutLogin from '../components/layoutLogin'
-import Form from '../components/Form'
+import { getProviders, useSession } from 'next-auth/react'
+import React from 'react'
+import BtnLogin from '../components/BtnLogin'
+import Router from 'next/router'
 
-const Login = () => {
-  const { mutateUser } = useUser({
-    redirectTo: '/profile-sg',
-    redirectIfFound: true,
-  })
 
-  const [errorMsg, setErrorMsg] = useState('')
 
-  async function handleSubmit(e) {
-    e.preventDefault()
+export default function Login({ providers }) {
+  const { data: sessiom } = useSession()
 
-    const body = {
-      username: e.currentTarget.username.value,
-    }
-  }
-
+  if (sessiom) return (
+    Router.push('/'),
+    null
+  )
   return (
     <LayoutLogin>
-      <div className="container">
-        <div className="login">
-          <Form isLogin errorMessage={errorMsg} onSubmit={handleSubmit} />
+      <div className="column is-full is-centered ">
+        <div className="column is-half is-vcentered has-text-centered">
+          <h1 className="title is-3">Choose Your Login Provider</h1>
+          <h2 className="subtitle">Required to see your personal saved content.</h2>
         </div>
       </div>
-
+      <div className="loginForm column is-narrow">
+        <BtnLogin
+          provider={providers.google}
+        />
+        </div>
+        <div className="loginForm column is-narrow">
+        <BtnLogin
+          provider={providers.facebook}
+        />
+        </div>
+        <div className="loginForm column is-narrow">
+        <BtnLogin
+          provider={providers.github}
+        />
+        </div>
+        <div className="loginForm column is-narrow">
+        <BtnLogin
+          provider={providers.twitter}
+        />
+      </div>
     </LayoutLogin>
   )
 }
 
-export default Login
+export async function getServerSideProps(ctx) {
+  const providers = await getProviders()
+  return {
+    props: {
+      providers
+    },
+  }
+}
+
