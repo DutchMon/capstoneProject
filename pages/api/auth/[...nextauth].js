@@ -5,7 +5,7 @@ import GitHubProvider from "next-auth/providers/github"
 import TwitterProvider from "next-auth/providers/twitter"
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import { connectToDatabase } from "../../../lib/mongodb"
-
+import log from "logging-service"
 
 export default async function auth(req, res) {
   let { client } = await connectToDatabase()
