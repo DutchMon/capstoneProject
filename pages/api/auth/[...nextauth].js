@@ -39,55 +39,7 @@ export default async function auth(req, res) {
     pages: {
       signIn: '/login'
     },
-    debug: true,
-    events: {
-
-    async signIn(message) {
-
-      console.log('signIn', message) /* on successful sign in */
-
-      if(message && message.user && message.user.email && message.user.emailVerified){
-
-            // verified user login him
-
-            if(!validator.isEmail(message.user.email)){
-               return;
-            }
-
-            console.log('trying to login:' + message.user.email)
-
-            var name = message.user.name ? message.user.name : message.user.email.split('@')[0]
-
-            UserLogin(
-                message.user.email,
-                name,
-                regservice.email /*social*/,
-                message.user.image,
-                regservice.email,
-                null/*referedFrom*/,
-            function(){
-
-            });
-
-      }
-
-
-    },
-
-    async createUser(message) {
-      //console.log('createUser', message)
-    },
-
-    async signOut(message) { /* on signout */ },
-
-    async updateUser(message) {
-      //console.log('updateUser', message)
-    },
-
-    async linkAccount(message) { /* account (e.g. Twitter) linked to a user */ },
-    async session(message) { /* session is active */ },
-    async error(message) { /* error in authentication flow */ }
-  },
+    //debug: true,
     //...
   })
 }
