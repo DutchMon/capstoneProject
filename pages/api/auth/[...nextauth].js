@@ -36,7 +36,6 @@ export default async function auth(req, res) {
         clientSecret: process.env.TWITTER_CLIENT_SECRET
       })
     ],
-    site: process.env.NEXTAUTH_URL,
     pages: {
       signIn: '/login'
     },

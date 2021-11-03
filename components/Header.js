@@ -41,7 +41,6 @@ const Header = () => {
     const node = useRef();
     useOnClickOutside(node, (e) => closeBurger())
 
-    console.log(session)
 
     return (
         <>
