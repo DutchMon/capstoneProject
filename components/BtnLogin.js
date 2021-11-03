@@ -14,6 +14,7 @@ const iconObject = {
 
 const BtnLogin = ({ provider }) => {
   const brandName = `${provider.name.toLowerCase()}`
+  const router = useRouter()
   return (
     <button className="button is-link is-medium" onClick={() => signIn(provider.id), { callbackUrl: router.query.callbackUrl }}>
       <span>
