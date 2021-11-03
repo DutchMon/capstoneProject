@@ -16,7 +16,7 @@ const BtnLogin = ({ provider }) => {
   const brandName = `${provider.name.toLowerCase()}`
   const router = useRouter()
   return (
-    <button className="button is-link is-medium" onClick={() => signIn(provider.id), { callbackUrl: provider.callbackUrl }}>
+    <button className="button is-link is-medium" onClick={() => signIn(provider.id, { callbackUrl: provider.callbackUrl })}>
       <span>
         <FontAwesomeIcon icon={iconObject[brandName]} className="menu-list brandIcon" />
            {provider.name}
