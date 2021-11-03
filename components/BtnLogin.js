@@ -15,7 +15,7 @@ const iconObject = {
 const BtnLogin = ({ provider }) => {
   const brandName = `${provider.name.toLowerCase()}`
   return (
-    <button className="button is-link is-medium" onClick={() => signIn(provider.id)}>
+    <button className="button is-link is-medium" onClick={() => signIn(provider.id), { callbackUrl: router.query.callbackUrl }}>
       <span>
         <FontAwesomeIcon icon={iconObject[brandName]} className="menu-list brandIcon" />
            {provider.name}
