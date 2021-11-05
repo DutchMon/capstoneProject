@@ -131,7 +131,9 @@ ul.login-list > li > div {
   top: 0;
 }
 .dashboard-main .footer {
-  max-height: 20vh;
+  padding: 1rem;
+  max-height: 15rem !important;
+  min-height: 5rem;
 }
 .dashboard-main .flexGrow {
   flex-grow: 1;
@@ -235,4 +237,13 @@ ul.login-list > li > div {
 .loginForm {
   display: flex;
   flex-flow: column;
+}
+
+/* sliders */
+input[type="range"]::-webkit-slider-thumb:before {
+  background: blueviolet !important;
+}
+
+input[type="range"]::-webkit-slider-thumb:after {
+  background: rgb(247, 247, 247) !important;
 }

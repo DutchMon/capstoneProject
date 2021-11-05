@@ -12,7 +12,7 @@ import { getSession } from 'next-auth/react'
 export default function CropAnalyticsContent({ crops }) {
     return (
         <Layout>
-            <section className="section" id="noPaddingTop">
+            <div className="section">
 
                 <div className="level is-hidden-mobile">
                     <div className="level-left">
@@ -27,7 +27,9 @@ export default function CropAnalyticsContent({ crops }) {
 
                 <section className="content is-small">
                     {crops.length === 0 ? (
-                        null
+                        <div>
+                            <CropCounter cropLength={crops.length} />
+                        </div>
                     ) : (
                             <div>
                                 <CropCounter cropLength={crops.length} />
@@ -63,7 +65,7 @@ export default function CropAnalyticsContent({ crops }) {
 
 
 
-            </section>
+            </div>
         </Layout>
     )
 }

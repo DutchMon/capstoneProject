@@ -35,7 +35,6 @@ async function getCrops(req,res){
         let crops = await db
             .collection('crops')
             .find({})
-            .sort({ published: -1 })
             .toArray()
         // return the crops
         return res.json({
@@ -56,7 +55,7 @@ async function addCrop(req, res) {
         // connect to the database
         let { db } = await connectToDatabase()
         // add the crop
-        await db.collection('crops').insertOne(JSON.parse(req.body))
+        await db.collection('cropTest').insertOne(JSON.parse(req.body))
         // return a message
         return res.json({
             message: 'Crop added successfully',
@@ -76,7 +75,7 @@ async function updateCrop(req, res) {
         // connect to the database
         let { db } = await connectToDatabase()
 
-        // update the published status of the crop
+        // update the hydration or infestation level
         await db.collection('crops').updateOne(
             {
                 _id: new ObjectId(req.body),

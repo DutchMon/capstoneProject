@@ -9,18 +9,18 @@ import PropTypes from 'prop-types'
 
 /*------- Default Page Layout ------*/
 
-const LayoutLogin = ({ children }) => (
+const LayoutDashboard = ({ children }) => (
     <>
         <Head>
             <title>Digital Dirt</title>
         </Head>
         <div className="dashboard is-full-height">
-      <Navbar></Navbar>
+            <Navbar></Navbar>
             <div className="dashboard-main">
                 <Header />
                 <div className="block flexGrow scroll">
-                    <main className="centerLoginButtons">
-                        <div className="columns is-centered is-multiline">{children}</div>
+                    <main>
+                        <div className="dashboardChart">{children}</div>
                     </main>
                 </div>
                 <Footer></Footer>
@@ -28,8 +28,8 @@ const LayoutLogin = ({ children }) => (
         </div>
     </>
 )
-export default LayoutLogin
+export default LayoutDashboard
 
-LayoutLogin.propTypes = {
+LayoutDashboard.propTypes = {
     children: PropTypes.node,
 }

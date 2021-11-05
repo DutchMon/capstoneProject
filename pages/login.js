@@ -15,7 +15,7 @@ export default function Login({ providers }) {
   )
   return (
     <LayoutLogin>
-      <div className="column is-full is-centered ">
+      <div className="column is-full is-centered">
         <div className="column is-half is-vcentered has-text-centered">
           <h1 className="title is-3">Choose Your Login Provider</h1>
           <h2 className="subtitle">Required to see your personal saved content.</h2>

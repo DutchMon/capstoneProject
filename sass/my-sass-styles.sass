@@ -1,11 +1,17 @@
 @charset "utf-8"
 
-// Link colors
-
+// Link/Button colors
 $link: #BAD924
+$link-light: #BAD924
+$link-invert: #565656
+$link-dark: #565656
+
+// Slider Variables
+$slider-track-background: #b1ce22
 
 @import "../node_modules/bulma/bulma.sass"
 @import "../node_modules/bulma-pageloader"
+@import "../node_modules/bulma-slider"
 
 .menu-list
   svg
@@ -42,3 +48,66 @@ $link: #BAD924
 
 .navbar-end
   align-items: center
+
+.slider
+  display: inline-flex !important
+  margin: 0 !important
+  font-size: 1rem
+  height: 2.5em
+  justify-content: flex-start
+  padding-bottom: -webkit-calc(0.5em - 1px)
+  padding-bottom: calc(0.5em - 1px)
+  padding-left: -webkit-calc(0.75em - 1px)
+  padding-left: calc(0.75em - 1px)
+  padding-right: -webkit-calc(0.75em - 1px)
+  padding-right: calc(0.75em - 1px)
+  padding-top: -webkit-calc(0.5em - 1px)
+  padding-top: calc(0.5em - 1px)
+  position: relative
+  width: 100% !important
+
+.sliderOutput
+  border: 1px solid
+  border-color: #dbdbdb
+  border-radius: 4px
+  font-weight: 500
+
+.sliderCalendar
+  border: 1px solid
+  border-color: #dbdbdb
+  border-radius: 4pxr
+
+.react-datepicker-popper
+  width: max-content
+
+.sliderForm
+  width: 75%
+  margin: 2rem
+  padding: 2rem
+  border-color: #8DB789
+  border: 4px solid
+  border-radius: 20px
+
+.charts
+  padding: 2rem
+
+.chartStyle
+  background:#FFFFFF
+  border: none
+  border-radius: 2px
+  box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2)
+  height: 500px
+  width: 800px
+
+.dashboardChart
+  height: 100%
+  display: flex
+  justify-content: none
+  flex-direction: column
+  align-items: center
+
+.scroll
+  overflow: scroll
+
+.heightFull
+  height: 100%
