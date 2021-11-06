@@ -1,8 +1,11 @@
 /*____________Imports_________________*/
 
 import LayoutDashboard from '../components/layoutDashboard'
+import HomeContent from '../components/pageContent/HomeContent'
+
 import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom'
 import React, { useRef, useCallback, useState, useEffect } from "react"
+
 
 //import HomeContent from '../components/pageContent/HomeContent'
 //import { getProviders, getSession } from "next-auth/react"
@@ -10,28 +13,33 @@ import React, { useRef, useCallback, useState, useEffect } from "react"
 /*____________________________________*/
 
 
-const sdk = new ChartsEmbedSDK({
-    baseUrl: 'https://charts.mongodb.com/charts-project-0-oamkk'
-})
-const chart = sdk.createChart({
-    chartId: '103b7ec3-a8bf-455d-ad02-0e4f019905be',
-})
-
-
 
 export default function Dashboard() {
+    const [_document, set_document] = useState(null)
+    const sdk = new ChartsEmbedSDK({
+        baseUrl: 'https://charts.mongodb.com/charts-project-0-oamkk'
+    })
+    const chart = sdk.createChart({
+        chartId: '103b7ec3-a8bf-455d-ad02-0e4f019905be',
+        showAttribution: false,
+        maxDataAge: 5
+    })
 
+    useEffect(() => {
+        set_document(document)
 
-
+        if (typeof window === 'object') {
+            chart.render(document.getElementById("chart"))
+        }
+    }, [])
 
     return (
         <LayoutDashboard>
             <section className="hero is-centered">
                 <div className="hero-body">
-                    <iframe
-                        className="chartStyle"
-                        src={'https://charts.mongodb.com/charts-project-0-oamkk/embed/charts?id=103b7ec3-a8bf-455d-ad02-0e4f019905be&maxDataAge=3600'}
-                    />
+                    <div className="chart-container chartStyle">
+                        <div id="chart"> </div>
+                    </div>
                 </div>
             </section>
             <section className="section is-medium">
@@ -42,44 +50,12 @@ export default function Dashboard() {
     )
 }
 
+
 /*
-
-    const refChart = useRef(null)
-
-    const renderChart = useCallback(async (ref) => {
-        try {
-            await chart.renderPage(ref)
-        } catch (e) {
-            console.error(e)
-        }
-    },[])
-
-    const setRefChart = useCallback(
-        (ref) => {
-            if (ref) {
-                renderChart(ref)
-            }
-            refChart.current = ref
-        },
-        [renderChart]
-    )
-
-
-
-export async function getServerSideProps(ctx) {
-    // get the current environment
-    let dev = process.env.NODE_ENV !== 'production'
-
-    // request crop data from api
-    let response = await fetch(`${server}/api/crops`)
-    // extract the data
-    let data = await response.json()
-    //console.log(data)
-
-    return {
-        props: {
-            crops: data['message']
-        },
-    }
-}
+< section className = "section" >
+    <iframe
+        className="chartStyle"
+        src={'https://charts.mongodb.com/charts-project-0-oamkk/embed/charts?id=103b7ec3-a8bf-455d-ad02-0e4f019905be&maxDataAge=3600'}
+    />
+ </section >
 */
