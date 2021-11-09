@@ -48,28 +48,33 @@ async function matchCrop(req, res) {
     }
 }
 
-
-/*
 async function updateCrop(req, res) {
     try {
         // connect to the database
         let { db } = await connectToDatabase()
 
+        let crop = JSON.parse(req.body)
+
         // update the hydration or infestation level
         await db.collection('crops').updateOne(
             {
-                _id: new ObjectId(req.body.cropId)
+                _id: new ObjectId(crop.cropId)
             },
-            { $push: {storedHydrationLevel: { hydrationArray: { req.body.hydration } }
-        )
+            { $push: {
+                   hydrationArray : crop.hydration,
+                   hydrationDateArray: crop.hydrationDate,
+                   infestationArray: crop.infestation,
+                   infestationDateArray: crop.infestationDate
+                }
+            }
 
+        )
         // return a message
         return res.json({
             message: 'Crop updated successfully',
             success: true,
         })
     } catch (error) {
-
         // return an error
         return res.json({
             message: new Error(error).message,
@@ -77,4 +82,3 @@ async function updateCrop(req, res) {
         })
     }
 }
-*/

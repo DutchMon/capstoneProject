@@ -11,10 +11,6 @@ export default async function handler(req, res) {
             return getCrops(req, res)
         }
 
-        case 'GETONE': {
-            return getOneCrop(req, res)
-        }
-
         case 'POST': {
             return addCrop(req, res)
         }

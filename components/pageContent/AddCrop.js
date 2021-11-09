@@ -24,22 +24,18 @@ export default function AddCrop() {
         // cropPost structure
         let crop = {
             cropName,
-            storedInfestationLevels: {
-                infestationArray: [
-                    infestation
-                ],
-                infestationDateArray: [
-                    infestationDate
-                ]
-            },
-            storedHydrationLevels: {
-                hydrationArray: [
-                    hydration
-                ],
-                hydrationDateArray:[
-                    hydrationDate
-                ]
-            },
+            infestationArray: [
+                infestation
+            ],
+            infestationDateArray: [
+                infestationDate
+            ],
+            hydrationArray: [
+                hydration
+            ],
+            hydrationDateArray: [
+                hydrationDate
+            ],
             initialCreation: new Date().toISOString()
         }
         // save the post

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
+import { useRouter } from 'next/router'
 
 
 export default function EditCrop({ cropObject }) {
@@ -12,6 +13,7 @@ export default function EditCrop({ cropObject }) {
     const [hydrationDate, setHydrationDate] = useState(new Date())
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
+    const router = useRouter()
 
 
     const handlePost = async (e) => {
@@ -27,24 +29,45 @@ export default function EditCrop({ cropObject }) {
         // cropPost structure
         let crop = {
             cropId,
-            storedInfestationLevels: {
-                infestationArray: [
-                    infestation
-                ],
-                infestationDateArray: [
-                    infestationDate
-                ]
-            },
-            storedHydrationLevels: {
-                hydrationArray: [
-                    hydration
-                ],
-                hydrationDateArray: [
-                    hydrationDate
-                ]
-            },
+            infestation,
+            infestationDate,
+            hydration,
+            hydrationDate
+        }
+
+        console.log("$$$$$$$$$Crop:", JSON.parse(JSON.stringify(crop)))
+        // Update the post
+        let response = await fetch('/api/editCrop', {
+            method: 'PUT',
+            body: JSON.stringify(crop),
+        })
+
+        // get the data
+        let data = await response.json()
+
+        if (data.success) {
+            // reset the fields
+            //setCropName('')
+            //setStoredInfestationLevels({infestation, infestationDate})
+            //setStoredHydrationLevels({hydration,hydrationDate})
+            setInfestation(0)
+            setInfestationDate(new Date())
+            setHydration(0)
+            setHydrationDate(new Date())
+            // set the message
+            return (
+                router.push({
+                pathname: '/cropAnalytics'
+            }),
+            console.log("YUOU DID IT")
+            )
+        } else {
+            // set the error
+            return console.log(data.message)
         }
     }
+
+
 
 
 
