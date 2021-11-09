@@ -12,9 +12,6 @@ import { getSession, useSession } from 'next-auth/react'
 export default function CropAnalyticsContent({ crops }) {
 
     const { data: session, status } = useSession()
-
-
-
     return (
         <Layout>
             <div className="section">
@@ -85,10 +82,6 @@ export default function CropAnalyticsContent({ crops }) {
                         </div>
                     </div>
                 </div>
-
-
-
-
             </div>
         </Layout>
     )
