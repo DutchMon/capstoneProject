@@ -5,6 +5,7 @@ import HomeContent from '../components/pageContent/HomeContent'
 
 import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom'
 import React, { useRef, useCallback, useState, useEffect } from "react"
+import { useSession } from "next-auth/react"
 
 
 //import HomeContent from '../components/pageContent/HomeContent'
@@ -24,6 +25,13 @@ export default function Dashboard() {
         showAttribution: false,
         maxDataAge: 5
     })
+
+
+
+    const { data: session, status } = useSession()
+
+    console.log("Session:", session)
+    console.log("Status:", status)
 
     useEffect(() => {
         set_document(document)

@@ -1,15 +1,20 @@
 /*____________Imports_________________*/
 
 import Layout from '../components/layout'
-import CropCard from '../components/CropCard'
+import CropTable from '../components/CropTable'
 import CropCounter from '../components/CropCounter'
 import { server } from '../config'
-import { getSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 
 /*____________________________________*/
 
 
 export default function CropAnalyticsContent({ crops }) {
+
+    const { data: session, status } = useSession()
+
+
+
     return (
         <Layout>
             <div className="section">
@@ -48,19 +53,38 @@ export default function CropAnalyticsContent({ crops }) {
                     </div>
                 </div>
 
-                <section className="content is-medium">
-
-                    {crops.length === 0 ? (
-                        <h2>No crops have been added</h2>
-                    ) : (
-                            <ul>
-                                {crops.map((crop, i) => (
-                                    <CropCard crop={crop} key={i} />
-                                ))}
-                            </ul>
-                        )}
-
-                </section>
+                <div className="hero is-centered">
+                    <div className="hero-body">
+                        <div className="b-table has-pagination">
+                            <div className="table-wrapper has-mobile-cards">
+                                <table className="table is-fullwidth is-striped is-hoverable is-fullwidth">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <abbr title="Name">Name</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="Hydration">Current Hydration Level</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="Infestation">Current Infestation Level</abbr>
+                                            </th>
+                                            <th>
+                                                <abbr title="Created">Created</abbr>
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {crops.map((crop, i) => (
+                                            <CropTable crop={crop} key={i} />
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -72,11 +96,10 @@ export default function CropAnalyticsContent({ crops }) {
 
 
 export async function getServerSideProps(ctx) {
-    // get the current environment
-    let dev = process.env.NODE_ENV !== 'production'
 
     // request crop data from api
     let response = await fetch(`${server}/api/crops`)
+
     // extract the data
     let data = await response.json()
     //console.log(data)
@@ -87,3 +110,28 @@ export async function getServerSideProps(ctx) {
         },
     }
 }
+
+
+/*
+
+                <section className="content is-medium">
+
+                    {status !== "authenticated" ? (
+                        <div className="Hero">You must Sign In to view Crop Information</div>
+                    ) : [
+                            (crops.length === 0 ? (
+                                <h2>No crops have been added</h2>
+                            ) : (
+                                    <ul>
+                                        {crops.map((crop, i) => (
+                                            <CropCard crop={crop} key={i} />
+                                        ))}
+                                    </ul>
+                                )
+                            )
+                        ]
+                    }
+
+
+                </section>
+*/

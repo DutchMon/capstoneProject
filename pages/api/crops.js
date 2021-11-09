@@ -8,35 +8,41 @@ export default async function handler(req, res) {
     // switch the methods
     switch (req.method) {
         case 'GET': {
-            return getCrops(req, res);
+            return getCrops(req, res)
+        }
+
+        case 'GETONE': {
+            return getOneCrop(req, res)
         }
 
         case 'POST': {
-            return addCrop(req, res);
+            return addCrop(req, res)
         }
 
         case 'PUT': {
-            return updateCrop(req, res);
+            return updateCrop(req, res)
         }
 
         case 'DELETE': {
-            return deleteCrop(req, res);
+            return deleteCrop(req, res)
         }
     }
 }
 
-async function getCrops(req,res){
+async function getCrops(req, res) {
     const MONGODB_DB = process.env.DB_NAME
     try {
         // connect to the database
         let { db } = await connectToDatabase()
 
+
         // fetch the posts
         let crops = await db
-            .collection('crops')
+            .collection('cropTest')
             .find({})
             .toArray()
         // return the crops
+
         return res.json({
             message: JSON.parse(JSON.stringify(crops)),
             success: true,
@@ -70,41 +76,13 @@ async function addCrop(req, res) {
     }
 }
 
-async function updateCrop(req, res) {
-    try {
-        // connect to the database
-        let { db } = await connectToDatabase()
-
-        // update the hydration or infestation level
-        await db.collection('crops').updateOne(
-            {
-                _id: new ObjectId(req.body),
-            },
-            { $set: { published: true } }
-        )
-
-        // return a message
-        return res.json({
-            message: 'Crop updated successfully',
-            success: true,
-        })
-    } catch (error) {
-
-        // return an error
-        return res.json({
-            message: new Error(error).message,
-            success: false,
-        })
-    }
-}
-
 async function deleteCrop(req, res) {
     try {
         // Connecting to the database
         let { db } = await connectToDatabase()
 
         // Deleting the crop
-        await db.collection('crops').deleteOne({
+        await db.collection('cropTest').deleteOne({
             _id: new ObjectId(req.body),
         })
 

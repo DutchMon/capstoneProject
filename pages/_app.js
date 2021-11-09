@@ -7,7 +7,7 @@ import React from "react"
 import { Router } from "next/router"
 import Layout from '../components/layout'
 import { SessionProvider } from "next-auth/react"
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
 
 
 /*____________Realm App_____________*/

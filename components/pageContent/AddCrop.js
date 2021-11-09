@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
-import { hydrate } from 'react-dom'
 
 
 export default function AddCrop() {
