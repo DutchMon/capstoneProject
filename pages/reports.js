@@ -1,7 +1,7 @@
 /*____________Imports_________________*/
 
 import Layout from '../components/layout'
-import CropTable from '../components/CropTable'
+import ReportTable from '../components/CropTable'
 import CropCounter from '../components/CropCounter'
 import { server } from '../config'
 import { getSession, useSession } from 'next-auth/react'
@@ -9,7 +9,7 @@ import { getSession, useSession } from 'next-auth/react'
 /*____________________________________*/
 
 
-export default function CropAnalyticsContent({ crops }) {
+export default function CropAnalyticsContent({ reports }) {
 
     const { data: session, status } = useSession()
     return (
@@ -82,7 +82,7 @@ export default function CropAnalyticsContent({ crops }) {
 
 export async function getServerSideProps(ctx) {
 
-    // request crop data from api
+    // request report data from api
     let response = await fetch(`${server}/api/reports`)
 
     // extract the data

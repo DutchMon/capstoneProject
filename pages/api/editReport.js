@@ -5,38 +5,38 @@ export default async function handler(req, res) {
     // switch the methods
     switch (req.method) {
         case 'GET': {
-            return getCrop(req, res)
+            return getReport(req, res)
         }
         case 'POST': {
-            return matchCrop(req, res)
+            return matchReport(req, res)
         }
 
         case 'PUT': {
-            return updateCrop(req, res)
+            return updateReport(req, res)
         }
 
         case 'DELETE': {
-            return deleteCrop(req, res)
+            return deleteReport(req, res)
         }
     }
 }
 
-async function matchCrop(req, res) {
+async function matchReport(req, res) {
     const MONGODB_DB = process.env.DB_NAME
     try {
         // connect to the database
         let { db } = await connectToDatabase()
 
         // fetch the matched
-        let crop = await db
-            .collection('cropTest')
+        let report = await db
+            .collection('cropReports')
             .find(
                 { _id: ObjectId(req.body) }
             )
             .toArray()
         // return the crop
         return res.json({
-            crop
+            report
         })
 
     } catch (error) {
@@ -48,30 +48,30 @@ async function matchCrop(req, res) {
     }
 }
 
-async function updateCrop(req, res) {
+async function updateReport(req, res) {
     try {
         // connect to the database
         let { db } = await connectToDatabase()
 
-        let crop = JSON.parse(req.body)
+        let report = JSON.parse(req.body)
 
         // update the hydration or infestation level
-        await db.collection('cropTest').updateOne(
+        await db.collection('cropReports').updateOne(
             {
-                _id: new ObjectId(crop.cropId)
+                _id: new ObjectId(report.cropId)
             },
             { $push: {
-                   hydrationArray : crop.hydration,
-                   hydrationDateArray: crop.hydrationDate,
-                   infestationArray: crop.infestation,
-                   infestationDateArray: crop.infestationDate
+                   hydrationArray : report.hydration,
+                   hydrationDateArray: report.hydrationDate,
+                   infestationArray: report.infestation,
+                   infestationDateArray: report.infestationDate
                 }
             }
 
         )
         // return a message
         return res.json({
-            message: 'Crop updated successfully',
+            message: 'Report updated successfully',
             success: true,
         })
     } catch (error) {
