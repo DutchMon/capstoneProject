@@ -16,7 +16,7 @@ export default function CropTable({ crop }) {
 
         try {
             // Delete crop data
-            await fetch(`${server}/api/crops`, {
+            await fetch(`/api/crops`, {
                 method: 'DELETE',
                 body: cropId,
             })
