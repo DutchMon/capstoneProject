@@ -51,7 +51,7 @@ export default function CropTable({ crop }) {
             // reload the page
             return router.push({
                 pathname: '/editCrop',
-                query: cropResponse.crop[0]
+                query: cropResponse.crop
             })
         } catch (error) {
             return console.log("Error:", error)
