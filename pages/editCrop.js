@@ -12,6 +12,8 @@ import { server } from '../config'
 export default function Home({ }) {
     const router = useRouter()
 
+    console.log("---------------cropObject----------- ", router.query)
+
     return (
         <Layout>
                 <EditCrop cropObject={router.query} />

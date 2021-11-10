@@ -29,9 +29,9 @@ async function matchCrop(req, res) {
 
         // fetch the matched
         let crop = await db
-            .collection('cropTest')
+            .collection('crops')
             .find(
-                { _id: ObjectId(req.body) }
+                { cropName: req.body },
             )
             .toArray()
         // return the crop

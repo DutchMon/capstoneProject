@@ -29,13 +29,14 @@ export default function EditCrop({ cropObject }) {
         // cropPost structure
         let crop = {
             cropId,
+            cropName,
             infestation,
             infestationDate,
             hydration,
             hydrationDate
         }
 
-        console.log("$$$$$$$$$Crop:", JSON.parse(JSON.stringify(crop)))
+        //console.log("$$$$$$$$$Crop:", JSON.parse(JSON.stringify(crop)))
         // Update the post
         let response = await fetch('/api/editCrop', {
             method: 'PUT',

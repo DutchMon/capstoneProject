@@ -10,7 +10,7 @@ export default function CropTable({ crop }) {
     const [deleting, setDeleting] = useState(false)
     const router = useRouter()
 
-    console.log('%%%%%%%%%%%%%%%%  ', crop)
+    console.log('%%%%%%%%%%%%%%%%  ', crop.crop_id)
 
     //let hydrationArrayLastVal = crop.hydrationArray[crop.hydrationArray.length-1]
     //let infestationArrayLastVal = crop.infestationArray[crop.infestationArray.length-1]
@@ -69,12 +69,12 @@ export default function CropTable({ crop }) {
                 </td>
                 <td className="is-actions-cell">
                     <div className="buttons is-right">
-                        <button className="button is-small is-link" href="/" onClick={() => editCrop(crop['_id'])}>
+                        <button className="button is-small is-link" href="/" onClick={() => editCrop(crop.crop_id)}>
                             <span>
                                 <FontAwesomeIcon icon={faPenToSquare} />
                             </span>
                         </button>
-                        <button className="button is-small is-link" type="button" onClick={() => deleteCrop(crop['_id'])}>
+                        <button className="button is-small is-link" type="button" onClick={() => deleteCrop(crop['crop_id'])}>
                             {deleting ? 'Deleting' : (
                                 <span>
                                     <FontAwesomeIcon icon={faTrashCan} />
