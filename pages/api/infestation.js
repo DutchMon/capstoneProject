@@ -8,19 +8,19 @@ export default async function handler(req, res) {
     // switch the methods
     switch (req.method) {
         case 'GET': {
-            return getCrops(req, res)
+            return getInfestation(req, res)
         }
 
         case 'POST': {
-            return addCrop(req, res)
+            return addInfestation(req, res)
         }
 
         case 'PUT': {
-            return updateCrop(req, res)
+            return updateInfestation(req, res)
         }
 
         case 'DELETE': {
-            return deleteCrop(req, res)
+            return deleteInfestation(req, res)
         }
     }
 }
@@ -36,7 +36,7 @@ async function getCrops(req, res) {
         let crops = await db
             .collection('crops')
             .find({
-                isCrop: true
+                infestationLevel: {$exists: true}
             })
             .toArray()
         // return the crops

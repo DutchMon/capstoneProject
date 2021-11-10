@@ -8,24 +8,24 @@ export default async function handler(req, res) {
     // switch the methods
     switch (req.method) {
         case 'GET': {
-            return getCrops(req, res)
+            return getHydration(req, res)
         }
 
         case 'POST': {
-            return addCrop(req, res)
+            return addHydration(req, res)
         }
 
         case 'PUT': {
-            return updateCrop(req, res)
+            return updateHydration(req, res)
         }
 
         case 'DELETE': {
-            return deleteCrop(req, res)
+            return deleteHydration(req, res)
         }
     }
 }
 
-async function getCrops(req, res) {
+async function getHydration(req, res) {
     const MONGODB_DB = process.env.DB_NAME
     try {
         // connect to the database
@@ -36,7 +36,7 @@ async function getCrops(req, res) {
         let crops = await db
             .collection('crops')
             .find({
-                isCrop: true
+                hydrationLevel: {$exists: true}
             })
             .toArray()
         // return the crops
@@ -54,7 +54,7 @@ async function getCrops(req, res) {
     }
 }
 
-async function addCrop(req, res) {
+async function addHydration(req, res) {
     try {
         // connect to the database
         let { db } = await connectToDatabase()
@@ -83,7 +83,7 @@ async function addCrop(req, res) {
     }
 }
 
-async function deleteCrop(req, res) {
+async function deleteHydration(req, res) {
     try {
         // Connecting to the database
         let { db } = await connectToDatabase()

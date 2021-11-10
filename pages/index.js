@@ -17,8 +17,12 @@ import { useSession } from "next-auth/react"
 
 
 
-export default function Dashboard({ crops }) {
+export default function Dashboard({ crops, hydration, infestation }) {
     const [_document, set_document] = useState(null)
+
+    console.log('-------------Hydration---------  ', hydration)
+    console.log('-------------Hydration---------  ', infestation)
+
     const sdk = new ChartsEmbedSDK({
         baseUrl: 'https://charts.mongodb.com/charts-project-0-oamkk'
     })
@@ -122,11 +126,15 @@ export default function Dashboard({ crops }) {
 export async function getServerSideProps(ctx) {
 
     // request crop data from api
-    let cropRes = await fetch(`${server}/api/getCrops`)
+    let cropRes = await fetch(`${server}/api/crops`)
+    let hydrationRes = await fetch(`${server}/api/hydration`)
+    let infestationRes = await fetch(`${server}/api/infestation`)
     let reportRes = await fetch(`${server}/api/reports`)
 
     // extract the data
     let cropData = await cropRes.json()
+    let hydrationData = await hydrationRes.json()
+    let infestationData = await infestationRes.json()
     let reportData = await reportRes.json()
 
     //console.log(data)
@@ -134,6 +142,8 @@ export async function getServerSideProps(ctx) {
     return {
         props: {
             crops: cropData['message'],
+            hydration: hydrationData['message'],
+            infestation: infestationData['message'],
             reports: reportData['message']
         },
     }
