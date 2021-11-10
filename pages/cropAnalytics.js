@@ -12,51 +12,50 @@ import { getSession, useSession } from 'next-auth/react'
 export default function CropAnalyticsContent({ crops }) {
 
     const { data: session, status } = useSession()
+
+    console.log(crops)
     return (
         <Layout>
+            <div className="container box">
             <div className="section">
-
-                <div className="level is-hidden-mobile">
-                    <div className="level-left">
-                        <p className="title is-size-2 is-spaced">Crop Analytics</p>
-                    </div>
-                    <div className="level-right">
-                        <a className="button is-dark" href="/addCrop">Add Crop</a>
-                    </div>
-                </div>
-
-                <hr className="is-hidden-mobile"></hr>
-
-                <section className="content is-small">
-                    {crops.length === 0 ? (
-                        <div>
-                            <CropCounter cropLength={crops.length} />
-                        </div>
-                    ) : (
-                            <div>
-                                <CropCounter cropLength={crops.length} />
-                            </div>
-                        )}
-                </section>
-
-                <hr />
-
-                <div className="is-hidden-desktop">
-                    <div className="is-hidden-desktop">
-                        <p className="title is-size-2 is-centered">Crop Analytics</p>
-                    </div>
-                    <div className="is-centered" id="mobilePaddingTop">
-                        <a className="button is-dark" href="/addCrop">Add Crop</a>
-                    </div>
-                </div>
-
                 <div className="hero is-centered">
                     <div className="hero-body">
-                        <div className="b-table has-pagination">
+
+                        <div className="level is-hidden-mobile">
+                            <div className="level-left">
+                                <p className="title is-size-2 is-spaced">Crop Analytics</p>
+                            </div>
+                            <div className="level-right">
+                                <a className="button is-dark" href="/addCrop">Add Crop</a>
+                            </div>
+                        </div>
+
+                        <hr className="is-hidden-mobile"></hr>
+
+                        <section className="hero is-small">
+                            {crops.length === 0 ? (
+                                <CropCounter cropLength={crops.length} />
+                            ) : (
+                                    <CropCounter cropLength={crops.length} />
+                                )}
+                        </section>
+
+                        <hr />
+
+                        <div className="is-hidden-desktop">
+                            <div className="is-hidden-desktop">
+                                <p className="title is-size-2 is-centered">Crop Analytics</p>
+                            </div>
+                            <div className="is-centered" id="mobilePaddingTop">
+                                <a className="button is-dark" href="/addCrop">Add Crop</a>
+                            </div>
+                        </div>
+
+                        <div className="b-table has-pagination box">
                             <div className="table-wrapper has-mobile-cards">
                                 <table className="table is-fullwidth is-striped is-hoverable is-fullwidth">
                                     <thead>
-                                        <tr>
+                                        <tr className="has-text-centered">
                                             <th>
                                                 <abbr title="Name">Name</abbr>
                                             </th>
@@ -82,6 +81,7 @@ export default function CropAnalyticsContent({ crops }) {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </Layout>
     )

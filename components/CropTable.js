@@ -3,11 +3,16 @@ import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { server } from '../config'
+import { hydrate } from 'react-dom'
 
 
 export default function CropTable({ crop }) {
     const [deleting, setDeleting] = useState(false)
     const router = useRouter()
+
+    let hydrationArrayLastVal = crop.hydrationArray[crop.hydrationArray.length-1]
+    let infestationArrayLastVal = crop.infestationArray[crop.infestationArray.length-1]
+    let created =  new Date(crop.initialCreation).toDateString()
 
     // Delete crop post
     const deleteCrop = async (cropId) => {
@@ -53,12 +58,12 @@ export default function CropTable({ crop }) {
 
     return (
         <>
-            <tr key={crop._id}>
+            <tr className="has-text-centered" key={crop._id}>
                 <td data-label="Name">{crop.cropName}</td>
-                <td data-label="Hydration">40%</td>
-                <td data-label="Infestation">10%</td>
+                <td data-label="Hydration">{hydrationArrayLastVal}</td>
+                <td data-label="Infestation">{infestationArrayLastVal}</td>
                 <td data-label="Created">
-                    <small className="has-text-grey is-abbr-like" title="Oct 25, 2020">Oct 25, 2020</small>
+                    <small className="has-text-grey is-abbr-like" title="Date">{created}</small>
                 </td>
                 <td className="is-actions-cell">
                     <div className="buttons is-right">

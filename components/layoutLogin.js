@@ -20,7 +20,7 @@ const LayoutLogin = ({ children }) => (
                 <Header />
                 <div className="block flexGrow scroll">
                     <main className="centerLoginButtons">
-                        <div className="columns is-centered is-multiline">{children}</div>
+                        <div className="columns is-centered is-multiline box">{children}</div>
                     </main>
                 </div>
                 <Footer></Footer>

@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
+import { useRouter } from 'next/router'
 
 
 export default function AddCrop() {
-    const [cropName, setCropName] = useState('')
-    const [infestationLevel, setInfestation] = useState(0)
-    const [infestationDate, setInfestationDate] = useState(new Date())
-    const [hydrationLevel, setHydration] = useState(0)
-    const [hydrationDate, setHydrationDate] = useState(new Date())
+    const [reportName, setReportName] = useState('')
+    const [description, setDescription] = useState('')
+    const [expectedYield, setExpectedYield] = useState(0)
+    const [expectedYieldDate, setExpectedYieldDate] = useState(new Date())
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
+    const router = useRouter()
 
     const handlePost = async (e) => {
         e.preventDefault();
@@ -19,38 +20,24 @@ export default function AddCrop() {
         setMessage('')
 
         // fields check
-        if (!cropName) return setError('You must enter a name for the crop')
+        if (!reportName) return setError('You must enter a name for the crop')
 
         // cropPost structure
-        let crop = {
-            cropName,
-            hydrationLevel,
-            infestationLevel,
-            hydrationDate,
-            infestationDate,
+        let report = {
+            reportName,
+            description,
+            expectedYieldArray: [
+                expectedYield
+            ],
+            expectedYieldDateArray: [
+                expectedYieldDate
+            ],
             initialCreation: new Date().toISOString()
         }
-
-        /*
-            infestationArray: [
-                infestation
-            ],
-            infestationDateArray: [
-                infestationDate
-            ],
-            hydrationArray: [
-                hydration
-            ],
-            hydrationDateArray: [
-                hydrationDate
-            ],
-        */
-
-        console.log('$$$$$$$$$$$$$$$:   ', crop)
         // save the post
-        let response = await fetch('/api/crops', {
+        let response = await fetch('/api/reports', {
             method: 'POST',
-            body: JSON.stringify(crop),
+            body: JSON.stringify(report),
         })
 
         // get the data
@@ -58,15 +45,17 @@ export default function AddCrop() {
 
         if (data.success) {
             // reset the fields
-            setCropName('')
-            //setStoredInfestationLevels({infestation, infestationDate})
-            //setStoredHydrationLevels({hydration,hydrationDate})
-            setInfestation(0)
-            setInfestationDate(new Date())
-            setHydration(0)
-            setHydrationDate(new Date())
+            setReportName('')
+            setDescription('')
+            setExpectedYield(0)
+            setExpectedYieldDate(new Date())
             // set the message
-            return setMessage(data.message)
+            return (
+                setMessage(data.message),
+                router.push({
+                    pathname: '/reports'
+                })
+            )
         } else {
             // set the error
             return setError(data.message)
@@ -89,13 +78,13 @@ export default function AddCrop() {
                     </div>
                 ) : null}
                 <div className="column is-full is-vcentered has-text-centered">
-                    <h1 className="title is-2 is-spaced">Add a New Crop</h1>
-                    <h2 className="subtitle is-6">This form adds a new crop to the dashboard.</h2>
+                    <h1 className="title is-2 is-spaced">Add a New Report</h1>
+                    <h2 className="subtitle is-6">This form adds a new report to the log.</h2>
                 </div>
                 <hr />
                 <div className="field is-horizontal">
                     <div className="field-label is-normal">
-                        <label className="label">Crop Name</label>
+                        <label className="label">Report Name</label>
                     </div>
                     <div className="field-body">
                         <div className="field">
@@ -103,10 +92,10 @@ export default function AddCrop() {
                                 <input
                                     className="input"
                                     type="text"
-                                    name="cropName"
-                                    onChange={(e) => setCropName(e.target.value)}
-                                    value={cropName}
-                                    placeholder="Name the Crop"
+                                    name="reportName"
+                                    onChange={(e) => setReportName(e.target.value)}
+                                    value={reportName}
+                                    placeholder="Name the Report"
                                 />
                             </p>
                         </div>
@@ -114,34 +103,16 @@ export default function AddCrop() {
                 </div>
                 <div className="field is-horizontal">
                     <div className="field-label is-normal">
-                        <label className="label">Hydration Level</label>
+                        <label className="label">Notes</label>
                     </div>
                     <div className="field-body">
-                        <div className="field has-addons">
-                            <div className="control">
-                                <output className="slider sliderOutput" htmlFor="sliderWithValue">{hydrationLevel}%</output>
-                            </div>
+                        <div className="field">
                             <div className="control is-expanded">
-                                <input
-                                    id="Hydration"
-                                    className="slider has-output is-fullwidth"
-                                    onChange={(e) => setHydration(e.target.valueAsNumber)}
-                                    min="0"
-                                    max="100"
-                                    value={hydrationLevel}
-                                    step="1"
-                                    type="range"
-                                />
-                            </div>
-                            <div className="control">
-                                <label className="label slider">Recorded on</label>
-                            </div>
-                            <div className="control">
-                                <DatePicker
-                                    className="slider sliderCalendar"
-                                    selected={hydrationDate}
-                                    onChange={(date) => setHydrationDate(date)}
-                                    monthsShown={2}
+                                <textarea
+                                    className="textarea"
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    value={description}
+                                    placeholder="Include a note here"
                                 />
                             </div>
                         </div>
@@ -149,21 +120,21 @@ export default function AddCrop() {
                 </div>
                 <div className="field is-horizontal">
                     <div className="field-label is-normal">
-                        <label className="label">Infestation Level</label>
+                        <label className="label">Expected Yield</label>
                     </div>
                     <div className="field-body">
                         <div className="field has-addons">
                             <div className="control">
-                                <output className="slider sliderOutput" htmlFor="sliderWithValue">{infestationLevel}%</output>
+                                <output className="slider sliderOutput" htmlFor="sliderWithValue">{expectedYield}%</output>
                             </div>
                             <div className="control is-expanded">
                                 <input
-                                    id="Infestation"
+                                    id="ExpectedYield"
                                     className="slider has-output is-fullwidth"
-                                    onChange={(e) => setInfestation(e.target.valueAsNumber)}
+                                    onChange={(e) => setExpectedYield(e.target.valueAsNumber)}
                                     min="0"
                                     max="100"
-                                    value={infestationLevel}
+                                    value={expectedYield}
                                     step="1"
                                     type="range"
                                 />
@@ -174,8 +145,8 @@ export default function AddCrop() {
                             <div className="control">
                                 <DatePicker
                                     className="slider sliderCalendar"
-                                    selected={infestationDate}
-                                    onChange={(date) => setInfestationDate(date)}
+                                    selected={expectedYieldDate}
+                                    onChange={(date) => setExpectedYieldDate(date)}
                                     monthsShown={2}
                                 />
                             </div>
@@ -188,10 +159,10 @@ export default function AddCrop() {
                         <button className="button is-link" type="submit">Submit</button>
                     </div>
                     <div className="control">
-                        <a className="button is-dark" href="/cropAnalytics">Cancel</a>
+                        <a className="button is-dark" href="/reports">Cancel</a>
                     </div>
                 </div>
             </form>
         </div>
-    );
+    )
 }

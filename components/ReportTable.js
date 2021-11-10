@@ -9,6 +9,10 @@ export default function CropTable({ report }) {
     const [deleting, setDeleting] = useState(false)
     const router = useRouter()
 
+    let reportYield = report.expectedYieldArray[report.expectedYieldArray.length-1]
+    let created =  new Date(report.initialCreation).toDateString()
+    console.log(report)
+
     // Delete crop post
     const deleteReport = async (reportId) => {
         //change deleting state
@@ -34,18 +38,21 @@ export default function CropTable({ report }) {
 
     const editReport = async (reportId) => {
         try {
-            // Update crop data
-            let response = await fetch(`/api/editCrop`, {
+            // Update report data
+            let response = await fetch(`/api/editReport`, {
                 method: 'POST',
                 body: reportId,
             })
             let reportResponse = await response.json()
 
             // reload the page
-            return router.push({
+            return (
+            router.push({
                 pathname: '/editReport',
                 query: reportResponse.report[0]
-            })
+            }),
+            console.log(reportResponse.report[0])
+            )
         } catch (error) {
             return console.log("Error:", error)
         }
@@ -53,12 +60,11 @@ export default function CropTable({ report }) {
 
     return (
         <>
-            <tr key={report._id}>
+            <tr className="has-text-centered" key={report._id}>
                 <td data-label="Name">{report.reportName}</td>
-                <td data-label="Hydration">40%</td>
-                <td data-label="Infestation">10%</td>
+                <td data-label="ExpectedYield">{reportYield}</td>
                 <td data-label="Created">
-                    <small className="has-text-grey is-abbr-like" title="Oct 25, 2020">Oct 25, 2020</small>
+                    <small className="has-text-grey is-abbr-like" title="Date">{created}</small>
                 </td>
                 <td className="is-actions-cell">
                     <div className="buttons is-right">

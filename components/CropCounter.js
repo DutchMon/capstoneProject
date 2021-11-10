@@ -7,34 +7,34 @@ export default function CropCounter({ cropLength }) {
 
 
     return (
-        <div className="container">
+        <div className="">
 
             <div className="tile is-ancestor larger-screens">
                 <div className="tile is-parent">
                     <div className="tile is-child box">
                         <div className="level">
-                            <p className="title level-left">Total Crops</p>
+                            <p className="title is-4 level-left">Total Crops</p>
                             <PlantIcon></PlantIcon>
                         </div>
-                        <h2 className="cropCount has-text-centered">{cropLength}</h2>
+                        <h2 className="cropCount title is-1 has-text-centered">{cropLength}</h2>
                     </div>
                 </div>
                 <div className="tile is-parent">
                     <div className="tile is-child box">
                         <div className="level">
-                            <p className="title level-left">Active Crops</p>
+                            <p className="title is-4 level-left">Active Crops</p>
                             <PlantIcon className="level-right"></PlantIcon>
                         </div>
-                        <h2 className="cropCount has-text-centered">{cropLength}</h2>
+                        <h2 className="cropCount title is-1 has-text-centered">{cropLength}</h2>
                     </div>
                 </div>
                 <div className="tile is-parent">
                     <div className="tile is-child box">
                         <div className="level">
-                            <p className="title level-left">Completed Crops</p>
+                            <p className="title is-4 level-left">Completed Crops</p>
                             <PlantIcon className="level-right"></PlantIcon>
                         </div>
-                        <h2 className="cropCount has-text-centered">{cropLength}</h2>
+                        <h2 className="cropCount title is-1 has-text-centered">{cropLength}</h2>
                     </div>
                 </div>
             </div>

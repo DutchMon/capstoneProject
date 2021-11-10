@@ -34,7 +34,7 @@ async function getCrops(req, res) {
 
         // fetch the posts
         let crops = await db
-            .collection('cropTest')
+            .collection('crops')
             .find({})
             .toArray()
         // return the crops
@@ -56,8 +56,17 @@ async function addCrop(req, res) {
     try {
         // connect to the database
         let { db } = await connectToDatabase()
+
+        let cropId = new ObjectId()
+
+        let crop = JSON.parse(req.body)
+
         // add the crop
-        await db.collection('cropTest').insertOne(JSON.parse(req.body))
+        await db.collection('crops').insertMany([
+            {_id: cropId, cropName: crop.cropName, creationDate: crop.initialCreation },
+            {crop_id: cropId, level: crop.hydrationLevel, date: crop.hydrationDate },
+            {crop_id: cropId, level: crop.infestationLevel, date: crop.infestationDate}
+        ])
         // return a message
         return res.json({
             message: 'Crop added successfully',
@@ -78,8 +87,9 @@ async function deleteCrop(req, res) {
         let { db } = await connectToDatabase()
 
         // Deleting the crop
-        await db.collection('cropTest').deleteOne({
+        await db.collection('crops').deleteMany({
             _id: new ObjectId(req.body),
+            crop_id: new ObjectId(req.body)
         })
 
         // returning a message
