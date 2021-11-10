@@ -20,8 +20,15 @@ import { useSession } from "next-auth/react"
 export default function Dashboard({ crops, hydration, infestation }) {
     const [_document, set_document] = useState(null)
 
-    console.log('-------------Hydration---------  ', hydration)
-    console.log('-------------Hydration---------  ', infestation)
+    //console.log('-------------Hydration---------  ', hydration)
+    //console.log('-------------Infestation---------  ', infestation)
+    //console.log('-------------Crop---------  ', crops)
+
+    const merged = crops.map(t1 => ({...t1, ...hydration.find(t2 => t2.crop_id === t1._id)}))
+    const chiMerged = merged.map(t1 => ({...t1, ...infestation.find(t2 => t2.crop_id === t1.crop_id)}))
+
+    console.log('---------------chiMerged------------   ', chiMerged)
+
 
     const sdk = new ChartsEmbedSDK({
         baseUrl: 'https://charts.mongodb.com/charts-project-0-oamkk'
@@ -58,13 +65,13 @@ export default function Dashboard({ crops, hydration, infestation }) {
             <div className="container box">
                 <div className="section">
                     <section className="hero is-small is-centered content">
-                        {crops.length === 0 ? (
+                        {chiMerged.length === 0 ? (
                             <div className="hero-body">
-                                <CropCounter cropLength={crops.length} />
+                                <CropCounter cropLength={chiMerged.length} />
                             </div>
                         ) : (
                                 <div>
-                                    <CropCounter cropLength={crops.length} />
+                                    <CropCounter cropLength={chiMerged.length} />
                                 </div>
                             )}
                     </section>
@@ -91,7 +98,7 @@ export default function Dashboard({ crops, hydration, infestation }) {
                                 <div className="table-wrapper has-mobile-cards">
                                     <table className="table is-fullwidth is-striped is-hoverable is-fullwidth">
                                         <thead>
-                                            <tr>
+                                            <tr className="has-text-centered">
                                                 <th>
                                                     <abbr title="Name">Name</abbr>
                                                 </th>
@@ -108,7 +115,7 @@ export default function Dashboard({ crops, hydration, infestation }) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {crops.map((crop, i) => (
+                                            {chiMerged.map((crop, i) => (
                                                 <CropTable crop={crop} key={i} />
                                             ))}
                                         </tbody>
@@ -148,3 +155,10 @@ export async function getServerSideProps(ctx) {
         },
     }
 }
+
+/*
+
+                                            {chiMerged.map((crop, i) => (
+                                                <CropTable crop={crop} key={i} />
+                                            ))}
+*/

@@ -65,9 +65,9 @@ async function addCrop(req, res) {
 
         // add the crop
         await db.collection('crops').insertMany([
-            {_id: cropId, cropName: crop.cropName, creationDate: crop.initialCreation },
-            {crop_id: cropId, hydrationLevel: crop.hydrationLevel, hydrationDate: crop.hydrationDate },
-            {crop_id: cropId, infestationLevel: crop.infestationLevel, infestationDate: crop.infestationDate}
+            {_id: cropId, cropName: crop.cropName, creationDate: crop.initialCreation, isCrop: true},
+            {crop_id: cropId, hydrationLevel: crop.hydrationLevel, hydrationDate: crop.hydrationDate, isCrop: false},
+            {crop_id: cropId, infestationLevel: crop.infestationLevel, infestationDate: crop.infestationDate, isCrop: false}
         ])
         // return a message
         return res.json({
