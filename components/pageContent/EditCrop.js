@@ -38,12 +38,19 @@ export default function EditCrop({ cropObject }) {
             hydrationDate
         }
 
+        // add new hydration and infestation documents
+        let response = await fetch('/api/hydration', {
+            method: 'POST',
+            body: JSON.stringify(crop),
+        })
         //console.log("$$$$$$$$$Crop:", JSON.parse(JSON.stringify(crop)))
         // Update the post
+        /*
         let response = await fetch('/api/editCrop', {
             method: 'PUT',
             body: JSON.stringify(crop),
         })
+        */
 
         // get the data
         let data = await response.json()

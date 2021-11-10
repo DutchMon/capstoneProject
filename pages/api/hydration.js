@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         }
 
         case 'POST': {
-            return addHydration(req, res)
+            return addLevels(req, res)
         }
 
         case 'PUT': {
@@ -54,7 +54,7 @@ async function getHydration(req, res) {
     }
 }
 
-async function addHydration(req, res) {
+async function addLevels(req, res) {
     try {
         // connect to the database
         let { db } = await connectToDatabase()
@@ -65,7 +65,6 @@ async function addHydration(req, res) {
 
         // add the crop
         await db.collection('crops').insertMany([
-            {_id: cropId, cropName: crop.cropName, creationDate: crop.initialCreation },
             {crop_id: cropId, hydrationLevel: crop.hydrationLevel, hydrationDate: crop.hydrationDate },
             {crop_id: cropId, infestationLevel: crop.infestationLevel, infestationDate: crop.infestationDate}
         ])
