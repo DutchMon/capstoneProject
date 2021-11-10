@@ -10,7 +10,7 @@ export default function CropTable({ crop }) {
     const [deleting, setDeleting] = useState(false)
     const router = useRouter()
 
-    console.log('%%%%%%%%%%%%%%%%  ', crop.cropName)
+    console.log('%%%%%%%%%%%%%%%%  ', crop)
 
     //let hydrationArrayLastVal = crop.hydrationArray[crop.hydrationArray.length-1]
     //let infestationArrayLastVal = crop.infestationArray[crop.infestationArray.length-1]
@@ -40,7 +40,7 @@ export default function CropTable({ crop }) {
     }
 
     const editCrop = async (cropId) => {
-        console.log('--------- testing ------- ', cropId)
+        //console.log('--------- testing ------- ', cropId)
         try {
             // Update crop data
             let response = await fetch(`/api/editCrop`, {
@@ -49,12 +49,14 @@ export default function CropTable({ crop }) {
             })
             let cropResponse = await response.json()
 
-            console.log('------- I checked this already...--------', cropResponse.crop)
+            let cropNameQuery = cropResponse.crop.find(x => x.crop_id === cropId)
+
+            //console.log('------- I checked this already...--------', cropResponse.crop[3])
 
             // reload the page
             return router.push({
                 pathname: '/editCrop',
-                query: cropResponse.crop[0]
+                query: cropNameQuery
             })
         } catch (error) {
             return console.log("Error:", error)
@@ -77,7 +79,7 @@ export default function CropTable({ crop }) {
                                 <FontAwesomeIcon icon={faPenToSquare} />
                             </span>
                         </button>
-                        <button className="button is-small is-link" type="button" onClick={() => deleteCrop(crop['crop_id'])}>
+                        <button className="button is-small is-link" type="button" onClick={() => deleteCrop(crop.cropName)}>
                             {deleting ? 'Deleting' : (
                                 <span>
                                     <FontAwesomeIcon icon={faTrashCan} />

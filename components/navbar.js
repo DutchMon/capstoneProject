@@ -36,7 +36,7 @@ export default function Navbar() {
                             <ActiveLink activeClassName="is-active" href="/cropAnalytics">
                                 <span>
                                     <FontAwesomeIcon icon={faChartBar} className="menu-list" />
-                                    Crop Analytics
+                                    Crops
                                 </span>
                             </ActiveLink>
                         </li>

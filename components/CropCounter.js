@@ -7,12 +7,12 @@ export default function CropCounter({ cropLength }) {
 
 
     return (
-        <div className="">
+        <div>
 
             <div className="tile is-ancestor larger-screens">
                 <div className="tile is-parent">
                     <div className="tile is-child box">
-                        <div className="level">
+                        <div className="level no-margin">
                             <p className="title is-4 level-left">Total Crops</p>
                             <PlantIcon></PlantIcon>
                         </div>
@@ -21,7 +21,7 @@ export default function CropCounter({ cropLength }) {
                 </div>
                 <div className="tile is-parent">
                     <div className="tile is-child box">
-                        <div className="level">
+                        <div className="level no-margin">
                             <p className="title is-4 level-left">Active Crops</p>
                             <PlantIcon className="level-right"></PlantIcon>
                         </div>
@@ -30,7 +30,7 @@ export default function CropCounter({ cropLength }) {
                 </div>
                 <div className="tile is-parent">
                     <div className="tile is-child box">
-                        <div className="level">
+                        <div className="level no-margin">
                             <p className="title is-4 level-left">Completed Crops</p>
                             <PlantIcon className="level-right"></PlantIcon>
                         </div>

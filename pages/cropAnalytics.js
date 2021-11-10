@@ -9,11 +9,22 @@ import { getSession, useSession } from 'next-auth/react'
 /*____________________________________*/
 
 
-export default function CropAnalyticsContent({ crops, hydration, infestation }) {
+export default function cropAnalytics({ crops, hydration, infestation }) {
 
     const { data: session, status } = useSession()
-    const merged = crops.map(t1 => ({ ...t1, ...hydration.find(t2 => t2.crop_id === t1._id) }))
-    const chiMerged = merged.map(t1 => ({ ...t1, ...infestation.find(t2 => t2.crop_id === t1.crop_id) }))
+    // sort array
+    let sortedHydration = hydration.sort(function (a, b) {
+        return new Date(b.hydrationDate) - new Date(a.hydrationDate)
+    })
+    let sortedInfestation = infestation.sort(function (a, b) {
+        return new Date(b.infestationDate) - new Date(a.infestationDate)
+    })
+
+
+    const merged = crops.map(t1 => ({ ...t1, ...sortedHydration.find(t2 => t2.cropName === t1.cropName) }))
+    const chiMerged = merged.map(t1 => ({ ...t1, ...sortedInfestation.find(t2 => t2.cropName === t1.cropName) }))
+
+
 
     return (
         <Layout>
@@ -24,7 +35,7 @@ export default function CropAnalyticsContent({ crops, hydration, infestation }) 
 
                             <div className="level is-hidden-mobile">
                                 <div className="level-left">
-                                    <p className="title is-size-2 is-spaced">Crop Analytics</p>
+                                    <p className="title is-size-2 is-spaced">Crops</p>
                                 </div>
                                 <div className="level-right">
                                     <a className="button is-dark" href="/addCrop">Add Crop</a>

@@ -4,6 +4,7 @@ import LayoutDashboard from '../components/layoutDashboard'
 import { server } from '../config'
 import CropCounter from '../components/CropCounter'
 import CropTable from '../components/CropTable'
+import ReportTable from '../components/ReportTable'
 
 import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom'
 import React, { useRef, useCallback, useState, useEffect } from "react"
@@ -17,17 +18,24 @@ import { useSession } from "next-auth/react"
 
 
 
-export default function Dashboard({ crops, hydration, infestation }) {
+export default function Dashboard({ crops, hydration, infestation, reports }) {
     const [_document, set_document] = useState(null)
 
     //console.log('-------------Hydration---------  ', hydration)
     //console.log('-------------Infestation---------  ', infestation)
     //console.log('-------------Crop---------  ', crops)
 
-    const merged = crops.map(t1 => ({...t1, ...hydration.find(t2 => t2.crop_id === t1._id)}))
-    const chiMerged = merged.map(t1 => ({...t1, ...infestation.find(t2 => t2.crop_id === t1.crop_id)}))
+    // sort array
+    let sortedHydration = hydration.sort(function (a, b) {
+        return new Date(b.hydrationDate) - new Date(a.hydrationDate)
+    })
+    let sortedInfestation = infestation.sort(function (a, b) {
+        return new Date(b.infestationDate) - new Date(a.infestationDate)
+    })
 
-    console.log('---------------chiMerged------------   ', chiMerged)
+    const merged = crops.map(t1 => ({ ...t1, ...sortedHydration.find(t2 => t2.cropName === t1.cropName) }))
+    const chiMerged = merged.map(t1 => ({ ...t1, ...sortedInfestation.find(t2 => t2.cropName === t1.cropName) }))
+
 
 
     const sdk = new ChartsEmbedSDK({
@@ -48,8 +56,8 @@ export default function Dashboard({ crops, hydration, infestation }) {
 
     const { data: session, status } = useSession()
 
-    console.log("Session:", session)
-    console.log("Status:", status)
+    //console.log("Session:", session)
+    //console.log("Status:", status)
 
     useEffect(() => {
         set_document(document)
@@ -92,38 +100,91 @@ export default function Dashboard({ crops, hydration, infestation }) {
                         </div>
                     </section>
                     <hr className="is-hidden-mobile"></hr>
-                    <div className="hero is-centered">
-                        <div className="hero-body">
-                            <div className="b-table has-pagination box">
-                                <div className="table-wrapper has-mobile-cards">
-                                    <table className="table is-fullwidth is-striped is-hoverable is-fullwidth">
-                                        <thead>
-                                            <tr className="has-text-centered">
-                                                <th>
-                                                    <abbr title="Name">Name</abbr>
-                                                </th>
-                                                <th>
-                                                    <abbr title="Hydration">Current Hydration Level</abbr>
-                                                </th>
-                                                <th>
-                                                    <abbr title="Infestation">Current Infestation Level</abbr>
-                                                </th>
-                                                <th>
-                                                    <abbr title="Created">Created</abbr>
-                                                </th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {chiMerged.map((crop, i) => (
-                                                <CropTable crop={crop} key={i} />
-                                            ))}
-                                        </tbody>
-                                    </table>
+                    <section>
+                        <div className="hero is-centered">
+                            <div className="hero-body">
+                                <div className="level is-hidden-mobile">
+                                    <div className="level-left">
+                                        <p className="title is-size-2 is-spaced">Crops</p>
+                                    </div>
+                                    <div className="level-right">
+                                        <a className="button is-dark" href="/addCrop">Add Crop</a>
+                                    </div>
+                                </div>
+                                <div className="b-table has-pagination box">
+                                    <div className="table-wrapper has-mobile-cards">
+                                        <table className="table is-fullwidth is-striped is-hoverable is-fullwidth">
+                                            <thead>
+                                                <tr className="has-text-centered">
+                                                    <th>
+                                                        <abbr title="Name">Name</abbr>
+                                                    </th>
+                                                    <th>
+                                                        <abbr title="Hydration">Current Hydration Level</abbr>
+                                                    </th>
+                                                    <th>
+                                                        <abbr title="Infestation">Current Infestation Level</abbr>
+                                                    </th>
+                                                    <th>
+                                                        <abbr title="Created">Created</abbr>
+                                                    </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {chiMerged.map((crop, i) => (
+                                                    <CropTable crop={crop} key={i} />
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
+                    <hr className="is-hidden-mobile"></hr>
+                    <section>
+                        <div className="hero is-centered">
+                            <div className="hero-body">
+                                <div className="level is-hidden-mobile">
+                                    <div className="level-left">
+                                        <p className="title is-size-2 is-spaced">Reports</p>
+                                    </div>
+                                    <div className="level-right">
+                                        <a className="button is-dark" href="/addReport">Create Report</a>
+                                    </div>
+                                </div>
+                                <div className="b-table has-pagination box">
+                                    <div className="table-wrapper has-mobile-cards">
+                                        <table className="table is-fullwidth is-striped is-hoverable is-fullwidth">
+                                            <thead>
+                                                <tr className="has-text-centered">
+                                                    <th>
+                                                        <abbr title="Name">Name</abbr>
+                                                    </th>
+                                                    <th>
+                                                        <abbr title="Hydration">Current Hydration Level</abbr>
+                                                    </th>
+                                                    <th>
+                                                        <abbr title="Infestation">Current Infestation Level</abbr>
+                                                    </th>
+                                                    <th>
+                                                        <abbr title="Created">Created</abbr>
+                                                    </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {reports.map((report, i) => (
+                                                    <ReportTable report={report} key={i} />
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </LayoutDashboard >

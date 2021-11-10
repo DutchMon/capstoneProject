@@ -10,7 +10,7 @@ import LayoutDashboard from '../components/layoutDashboard'
 /*____________________________________*/
 
 
-export default function CropAnalyticsContent({ reports }) {
+export default function Reports({ reports }) {
 
     const { data: session, status } = useSession()
     return (
@@ -23,7 +23,7 @@ export default function CropAnalyticsContent({ reports }) {
                                 <p className="title is-size-2 is-spaced">Reports</p>
                             </div>
                             <div className="level-right">
-                                <a className="button is-dark" href="/addReport">Add Report</a>
+                                <a className="button is-dark" href="/addReport">Create Report</a>
                             </div>
                         </div>
 
@@ -32,10 +32,10 @@ export default function CropAnalyticsContent({ reports }) {
                         <section className="content">
                             <div className="is-hidden-desktop">
                                 <div className="is-hidden-desktop">
-                                    <p className="title is-size-2 is-centered">Crop Analytics</p>
+                                    <p className="title is-size-2 is-centered">Reports</p>
                                 </div>
                                 <div className="is-centered" id="mobilePaddingTop">
-                                    <a className="button is-dark" href="/addCrop">Add Crop</a>
+                                    <a className="button is-dark" href="/addReport">Create Report</a>
                                 </div>
                             </div>
                             <div className="b-table has-pagination box">

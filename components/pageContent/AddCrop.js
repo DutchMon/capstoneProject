@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 
@@ -10,6 +11,7 @@ export default function AddCrop() {
     const [hydrationDate, setHydrationDate] = useState(new Date())
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
+    const router = useRouter()
 
     const handlePost = async (e) => {
         e.preventDefault();
@@ -32,7 +34,7 @@ export default function AddCrop() {
         }
 
 
-        console.log('$$$$$$$$$$$$$$$:   ', crop)
+        //console.log('$$$$$$$$$$$$$$$:   ', crop)
         // save the post
         let response = await fetch('/api/crops', {
             method: 'POST',
@@ -50,7 +52,12 @@ export default function AddCrop() {
             setHydration(0)
             setHydrationDate(new Date())
             // set the message
-            return setMessage(data.message)
+            return (
+                setMessage(data.message),
+                router.push({
+                    pathname: '/cropAnalytics'
+                })
+            )
         } else {
             // set the error
             return setError(data.message)

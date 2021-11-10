@@ -90,8 +90,7 @@ async function deleteCrop(req, res) {
 
         // Deleting the crop
         await db.collection('crops').deleteMany({
-            _id: new ObjectId(req.body),
-            crop_id: new ObjectId(req.body)
+            cropName: req.body
         })
 
         // returning a message

@@ -112,7 +112,7 @@ const Header = () => {
                             </ActiveLink>
                         </li>
                         <li>
-                            <ActiveLink activeClassName="is-active" href="/cropAnalytics">
+                            <ActiveLink activeClassName="is-active" href="/crops">
                                 <span>
                                     <FontAwesomeIcon icon={faChartBar} className="menu-list" />
                                     Crop Analytics
