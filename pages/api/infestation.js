@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     }
 }
 
-async function getCrops(req, res) {
+async function getInfestation(req, res) {
     const MONGODB_DB = process.env.DB_NAME
     try {
         // connect to the database
@@ -54,7 +54,7 @@ async function getCrops(req, res) {
     }
 }
 
-async function addCrop(req, res) {
+async function addInfestation(req, res) {
     try {
         // connect to the database
         let { db } = await connectToDatabase()
@@ -83,7 +83,7 @@ async function addCrop(req, res) {
     }
 }
 
-async function deleteCrop(req, res) {
+async function deleteInfestation(req, res) {
     try {
         // Connecting to the database
         let { db } = await connectToDatabase()
