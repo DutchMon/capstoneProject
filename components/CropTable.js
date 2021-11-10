@@ -40,6 +40,7 @@ export default function CropTable({ crop }) {
     }
 
     const editCrop = async (cropId) => {
+        console.log('--------- testing ------- ', cropId)
         try {
             // Update crop data
             let response = await fetch(`/api/editCrop`, {
