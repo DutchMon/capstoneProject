@@ -10,7 +10,7 @@ export default function CropTable({ crop }) {
     const [deleting, setDeleting] = useState(false)
     const router = useRouter()
 
-    console.log('%%%%%%%%%%%%%%%%  ', crop.crop_id)
+    console.log('%%%%%%%%%%%%%%%%  ', typeof(crop.crop_id))
 
     //let hydrationArrayLastVal = crop.hydrationArray[crop.hydrationArray.length-1]
     //let infestationArrayLastVal = crop.infestationArray[crop.infestationArray.length-1]

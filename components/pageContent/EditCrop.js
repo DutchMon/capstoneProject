@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 
 export default function EditCrop({ cropObject }) {
 
+    console.log('==========   cropObject   ======= ', cropObject)
+
     const cropName = cropObject.cropName
     const cropId = cropObject._id
     const [infestation, setInfestation] = useState(0)
