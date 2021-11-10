@@ -167,11 +167,17 @@ ul.login-list > li > div {
   width: 25%;
 }
 .mobile-logo-wrapper {
-  width: 45px;
+  width: 50px;
 }
+.is-centered-mobile {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
 #mobileLogo {
   display: flex !important;
-  justify-content: center;
+  justify-content: flex-start;
 }
 #mobileCenter {
   align-items: center;

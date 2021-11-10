@@ -13,44 +13,47 @@ $slider-track-background: #b1ce22
 @import "../node_modules/bulma-pageloader"
 @import "../node_modules/bulma-slider"
 @import "../node_modules/bulma-responsive-tables/bulma-responsive-tables"
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap')
 
 
 .container
   @include tablet
     min-width: 1000px
+  @include mobile
+    width: 100%
 
 .contentHeight
   height: 70vh
 
 .section
   @include tablet
-    max-width: 1300px
-    padding: 0px
+   max-width: 1300px
+   padding: 0px
 
 .hero-body
   @include tablet
-    padding: 0px
+   padding: 0px
 
 .menu-list
   svg
-    padding: 0 0.75em
-    // Modifiers
-    &.is-active
-      background-color: $menu-item-active-background-color
-      color: $menu-item-active-color
+   padding: 0 0.75em
+   // Modifiers
+   &.is-active
+    background-color: $menu-item-active-background-color
+    color: $menu-item-active-color
   span
-    padding: $menu-list-link-padding
-    &:hover
-      background-color: $menu-item-hover-background-color
-      color: $menu-item-hover-color
+   padding: $menu-list-link-padding
+   &:hover
+    background-color: $menu-item-hover-background-color
+    color: $menu-item-hover-color
 
-    // Modifiers
-    &.is-active
-      background-color: $menu-item-active-background-color
-      color: $menu-item-active-color
-    cursor: pointer
+   // Modifiers
+   &.is-active
+    background-color: $menu-item-active-background-color
+    color: $menu-item-active-color
+   cursor: pointer
   li
-    padding: .8em 0
+   padding: .8em 0
 
 .pageloader
   opacity: 0.8
@@ -152,3 +155,18 @@ abbr[title]
 .opacityLayer
   background-color: #FFFFFF
   opacity: 0.96
+
+.is-centered-mobile > h1
+  padding-left: 0.3rem
+  margin-bottom: 0.6rem
+  color: $link
+  font-family: 'Teko', sans-serif
+
+.is-centered-logo
+  flex-direction: column
+
+.is-centered-logo > h1
+  padding-left: 0.3rem
+  margin-bottom: 0.6rem
+  color: $link-dark
+  font-family: 'Teko', sans-serif

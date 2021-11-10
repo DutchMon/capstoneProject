@@ -12,11 +12,14 @@ import { useOnClickOutside } from './hooks'
 function Logo() {
     return (
         <div className="column" id="mobileLogo">
-            <div className="mobile-logo-wrapper">
-                <Image
-                    src={agIcon}
-                    alt="webapp logo icon image"
-                />
+            <div className="is-centered-mobile">
+                <div className="mobile-logo-wrapper">
+                    <Image
+                        src={agIcon}
+                        alt="webapp logo icon image"
+                    />
+                </div>
+                <h1 className="title is-5 is-dark">Digital Dirt</h1>
             </div>
         </div>
     )
@@ -44,7 +47,7 @@ const Header = () => {
 
     return (
         <>
-            <nav className="navbar is-fixed-top is-dark is-hidden-mobile">
+            <nav className="navbar is-fixed-top is-dark is-hidden-touch">
                 <div className="navbar-menu">
                     <div className="navbar-end">
                         <ul className="login-list">
@@ -84,9 +87,42 @@ const Header = () => {
                 </div>
             </nav>
             <nav className="navbar is-fixed-top is-dark is-hidden-desktop is-flex" id="mobileCenter" ref={node}>
-                <div className="column is-flex"></div>
                 <Logo></Logo>
                 <div className="column is-flex">
+
+                    <ul className="login-list">
+                        {session ? (
+                            <>
+                                <li className="welcomeSignOut">
+                                    <p id="loggedIn">Welcome, {session.user.name}</p>
+                                    <button className="button is-link is-small" onClick={() => signOut()}>Sign Out</button>
+                                </li>
+                                <li>
+                                    <Image
+                                        className="roundProfilePic"
+                                        src={session.user.image}
+                                        alt="user profile picture"
+                                        width={50}
+                                        height={50}
+                                        layout='fixed'
+                                    />
+                                </li>
+                            </>
+                        ) : (
+                                <>
+                                    <li>
+                                        <Link href="/login">
+                                            <a>Login</a>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <img src="/farmerIcon.png" width="32" height="32" />
+                                        </a>
+                                    </li>
+                                </>
+                            )}
+                    </ul>
                     <div className="navbar-burger burger" id="burger" onClick={toggleBurger}>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -98,48 +134,48 @@ const Header = () => {
                         <li>
                             <ActiveLink activeClassName="is-active" href="/">
                                 <span>
-                                    <FontAwesomeIcon icon={faHome} className="menu-list" />
                                     Dashboard
+                                    <FontAwesomeIcon icon={faHome} className="menu-list" />
                                 </span>
                             </ActiveLink>
                         </li>
                         <li>
                             <ActiveLink activeClassName="is-active" href="/reports">
                                 <span>
-                                    <FontAwesomeIcon icon={faFileInvoice} className="menu-list" />
                                     Reports
+                                    <FontAwesomeIcon icon={faFileInvoice} className="menu-list" />
                                 </span>
                             </ActiveLink>
                         </li>
                         <li>
-                            <ActiveLink activeClassName="is-active" href="/crops">
+                            <ActiveLink activeClassName="is-active" href="/cropAnalytics">
                                 <span>
+                                    Crops
                                     <FontAwesomeIcon icon={faChartBar} className="menu-list" />
-                                    Crop Analytics
                                 </span>
                             </ActiveLink>
                         </li>
                         <li>
                             <ActiveLink activeClassName="is-active" href="/inbox">
                                 <span>
-                                    <FontAwesomeIcon icon={faInbox} className="menu-list" />
                                     Inbox
+                                    <FontAwesomeIcon icon={faInbox} className="menu-list" />
                                 </span>
                             </ActiveLink>
                         </li>
                         <li>
                             <ActiveLink activeClassName="is-active" href="/media">
                                 <span>
-                                    <FontAwesomeIcon icon={faPhotoFilm} className="menu-list" />
                                     Media
+                                    <FontAwesomeIcon icon={faPhotoFilm} className="menu-list" />
                                 </span>
                             </ActiveLink>
                         </li>
                         <li>
                             <ActiveLink activeClassName="is-active" href="/settings">
                                 <span>
-                                    <FontAwesomeIcon icon={faGears} className="menu-list" />
                                     Settings
+                                    <FontAwesomeIcon icon={faGears} className="menu-list" />
                                 </span>
                             </ActiveLink>
                         </li>

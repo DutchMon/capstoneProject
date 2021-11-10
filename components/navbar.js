@@ -7,6 +7,7 @@ import agIcon from '../public/agIcon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faFileInvoice, faChartBar, faInbox, faPhotoFilm, faGears } from '@fortawesome/free-solid-svg-icons'
 
+
 export default function Navbar() {
     return (
         <div className="dashboard-panel is-small has-background-grey-lighter is-hidden-mobile">
@@ -74,13 +75,14 @@ export default function Navbar() {
 // Nested Components of Dashboard
 function Logo() {
     return (
-        <div className="is-centered">
+        <div className="is-centered is-centered-logo">
             <div className="logo-wrapper">
                 <Image
                     src={agIcon}
                     alt="webapp logo icon image"
                 />
             </div>
+            <h1 className="title is-4">Digital Dirt</h1>
         </div>
     )
 }
