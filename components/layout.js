@@ -18,12 +18,11 @@ const Layout = ({ children }) => (
       <Navbar></Navbar>
       <div className="dashboard-main is-scrollable">
         <Header />
-        <div className="block flexGrow scroll">
+        <div className="block flexGrow scroll contentHeight">
           <main>
             <div className="dashboardChart">{children}</div>
           </main>
         </div>
-        <Footer></Footer>
       </div>
     </div>
 

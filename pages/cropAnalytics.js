@@ -28,7 +28,7 @@ export default function cropAnalytics({ crops, hydration, infestation }) {
 
     return (
         <Layout>
-            <div className="container box">
+            <div className="container box opacityLayer">
                 <div className="section">
                     <div className="hero is-centered">
                         <div className="hero-body">

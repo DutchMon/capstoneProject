@@ -9,7 +9,7 @@ import { faHome, faFileInvoice, faChartBar, faInbox, faPhotoFilm, faGears } from
 
 export default function Navbar() {
     return (
-        <div className="dashboard-panel is-medium has-background-grey-lighter is-hidden-mobile">
+        <div className="dashboard-panel is-small has-background-grey-lighter is-hidden-mobile">
             <header className="dashboard-panel-header">
                 <Logo></Logo>
             </header>

@@ -15,7 +15,7 @@ export default function Reports({ reports }) {
     const { data: session, status } = useSession()
     return (
         <Layout>
-            <section className="hero box">
+            <section className="hero box opacityLayer contentHeight">
                 <div className="hero-body">
                     <div className="container">
                         <div className="level is-hidden-mobile">
@@ -47,7 +47,7 @@ export default function Reports({ reports }) {
                                                     <abbr title="Name">Name</abbr>
                                                 </th>
                                                 <th>
-                                                    <abbr title="Hydration">Current ExpectedYield</abbr>
+                                                    <abbr title="Hydration">Current Expected Yield</abbr>
                                                 </th>
                                                 <th>
                                                     <abbr title="Created">Created</abbr>

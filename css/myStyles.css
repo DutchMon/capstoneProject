@@ -119,6 +119,9 @@ ul.login-list > li > div {
   margin-top: 2rem;
 }
 .dashboard-main {
+  background-image: url("../public/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex: 1;
   display: flex;

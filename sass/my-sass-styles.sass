@@ -14,9 +14,13 @@ $slider-track-background: #b1ce22
 @import "../node_modules/bulma-slider"
 @import "../node_modules/bulma-responsive-tables/bulma-responsive-tables"
 
+
 .container
   @include tablet
     min-width: 1000px
+
+.contentHeight
+  height: 70vh
 
 .section
   @include tablet
@@ -49,9 +53,9 @@ $slider-track-background: #b1ce22
     padding: .8em 0
 
 .pageloader
-  opacity: 0.98
+  opacity: 0.8
   background: #666666
-  margin-left: 20rem
+  margin-left: 15rem
   margin-top: 5rem
 
 .brandIcon
@@ -123,7 +127,7 @@ $slider-track-background: #b1ce22
   height: 400px
 
 .dashboardChart
-  height: 100%
+  min-height: 70vh
   padding-top: 2rem
   display: flex
   justify-content: none
@@ -140,3 +144,11 @@ $slider-track-background: #b1ce22
   display: flex
   flex-direction: column
   align-items: center
+
+//table
+abbr[title]
+  text-decoration: solid
+
+.opacityLayer
+  background-color: #FFFFFF
+  opacity: 0.96

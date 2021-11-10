@@ -70,7 +70,7 @@ export default function Dashboard({ crops, hydration, infestation, reports }) {
 
     return (
         <LayoutDashboard>
-            <div className="container box">
+            <div className="container box opacityLayer">
                 <div className="section">
                     <section className="hero is-small is-centered content">
                         {chiMerged.length === 0 ? (
