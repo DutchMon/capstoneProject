@@ -186,6 +186,9 @@ ul.login-list > li > div {
   text-align: right;
 }
 
+.burger {
+  margin-left: 0;
+}
 #navMenu {
   color: rgba(0, 0, 0, 0.7) !important;
 }
