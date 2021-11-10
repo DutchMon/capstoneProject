@@ -88,7 +88,7 @@ const Header = () => {
             </nav>
             <nav className="navbar is-fixed-top is-dark is-hidden-desktop is-flex" id="mobileCenter" ref={node}>
                 <Logo></Logo>
-                <div className="column is-flex">
+                <div className="column is-flex is-justify-content-flex-end">
 
                     <ul className="login-list">
                         {session ? (
