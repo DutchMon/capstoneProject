@@ -9,9 +9,9 @@ export default function EditCrop({ cropObject }) {
 
     const cropName = cropObject.cropName
     const cropId = cropObject._id
-    const [infestation, setInfestation] = useState(0)
+    const [infestationLevel, setInfestation] = useState(0)
     const [infestationDate, setInfestationDate] = useState(new Date())
-    const [hydration, setHydration] = useState(0)
+    const [hydrationLevel, setHydration] = useState(0)
     const [hydrationDate, setHydrationDate] = useState(new Date())
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
@@ -127,7 +127,7 @@ export default function EditCrop({ cropObject }) {
                     <div className="field-body">
                         <div className="field has-addons">
                             <div className="control">
-                                <output className="slider sliderOutput" htmlFor="sliderWithValue">{hydration}%</output>
+                                <output className="slider sliderOutput" htmlFor="sliderWithValue">{hydrationLevel}%</output>
                             </div>
                             <div className="control is-expanded">
                                 <input
@@ -136,7 +136,7 @@ export default function EditCrop({ cropObject }) {
                                     onChange={(e) => setHydration(e.target.valueAsNumber)}
                                     min="0"
                                     max="100"
-                                    value={hydration}
+                                    value={hydrationLevel}
                                     step="1"
                                     type="range"
                                 />
@@ -162,7 +162,7 @@ export default function EditCrop({ cropObject }) {
                     <div className="field-body">
                         <div className="field has-addons">
                             <div className="control">
-                                <output className="slider sliderOutput" htmlFor="sliderWithValue">{infestation}%</output>
+                                <output className="slider sliderOutput" htmlFor="sliderWithValue">{infestationLevel}%</output>
                             </div>
                             <div className="control is-expanded">
                                 <input
@@ -171,7 +171,7 @@ export default function EditCrop({ cropObject }) {
                                     onChange={(e) => setInfestation(e.target.valueAsNumber)}
                                     min="0"
                                     max="100"
-                                    value={infestation}
+                                    value={infestationLevel}
                                     step="1"
                                     type="range"
                                 />

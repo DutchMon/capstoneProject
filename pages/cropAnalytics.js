@@ -15,7 +15,6 @@ export default function CropAnalyticsContent({ crops, hydration, infestation }) 
     const merged = crops.map(t1 => ({ ...t1, ...hydration.find(t2 => t2.crop_id === t1._id) }))
     const chiMerged = merged.map(t1 => ({ ...t1, ...infestation.find(t2 => t2.crop_id === t1.crop_id) }))
 
-    console.log(crops)
     return (
         <Layout>
             <div className="container box">

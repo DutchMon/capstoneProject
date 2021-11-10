@@ -10,7 +10,7 @@ export default function CropTable({ crop }) {
     const [deleting, setDeleting] = useState(false)
     const router = useRouter()
 
-    console.log('%%%%%%%%%%%%%%%%  ', typeof(crop.crop_id))
+    console.log('%%%%%%%%%%%%%%%%  ', crop.cropName)
 
     //let hydrationArrayLastVal = crop.hydrationArray[crop.hydrationArray.length-1]
     //let infestationArrayLastVal = crop.infestationArray[crop.infestationArray.length-1]
@@ -48,6 +48,8 @@ export default function CropTable({ crop }) {
             })
             let cropResponse = await response.json()
 
+            console.log('------- I checked this already...--------', cropResponse.crop)
+
             // reload the page
             return router.push({
                 pathname: '/editCrop',
@@ -60,7 +62,7 @@ export default function CropTable({ crop }) {
 
     return (
         <>
-            <tr className="has-text-centered" key={crop._id}>
+            <tr className="has-text-centered" key={crop.crop_id}>
                 <td data-label="Name">{crop.cropName}</td>
                 <td data-label="Hydration">{crop.hydrationLevel}</td>
                 <td data-label="Infestation">{crop.infestationLevel}</td>
@@ -69,7 +71,7 @@ export default function CropTable({ crop }) {
                 </td>
                 <td className="is-actions-cell">
                     <div className="buttons is-right">
-                        <button className="button is-small is-link" href="/" onClick={() => editCrop(crop.crop_id)}>
+                        <button className="button is-small is-link" href="/" onClick={() => editCrop(crop['crop_id'])}>
                             <span>
                                 <FontAwesomeIcon icon={faPenToSquare} />
                             </span>
