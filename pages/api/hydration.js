@@ -65,8 +65,8 @@ async function addLevels(req, res) {
 
         // add the crop
         await db.collection('crops').insertMany([
-            {crop_id: cropId, hydrationLevel: crop.hydrationLevel, hydrationDate: crop.hydrationDate },
-            {crop_id: cropId, infestationLevel: crop.infestationLevel, infestationDate: crop.infestationDate}
+            {crop_id: cropId, cropName: crop.cropName, hydrationLevel: crop.hydrationLevel, hydrationDate: crop.hydrationDate },
+            {crop_id: cropId, cropName: crop.cropName, infestationLevel: crop.infestationLevel, infestationDate: crop.infestationDate}
         ])
         // return a message
         return res.json({

@@ -32,9 +32,9 @@ export default function EditCrop({ cropObject }) {
         let crop = {
             cropId,
             cropName,
-            infestation,
+            hydrationLevel,
+            infestationLevel,
             infestationDate,
-            hydration,
             hydrationDate
         }
 
