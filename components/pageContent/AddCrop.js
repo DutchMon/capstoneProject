@@ -31,20 +31,6 @@ export default function AddCrop() {
             initialCreation: new Date().toISOString()
         }
 
-        /*
-            infestationArray: [
-                infestation
-            ],
-            infestationDateArray: [
-                infestationDate
-            ],
-            hydrationArray: [
-                hydration
-            ],
-            hydrationDateArray: [
-                hydrationDate
-            ],
-        */
 
         console.log('$$$$$$$$$$$$$$$:   ', crop)
         // save the post
@@ -59,8 +45,6 @@ export default function AddCrop() {
         if (data.success) {
             // reset the fields
             setCropName('')
-            //setStoredInfestationLevels({infestation, infestationDate})
-            //setStoredHydrationLevels({hydration,hydrationDate})
             setInfestation(0)
             setInfestationDate(new Date())
             setHydration(0)

@@ -122,7 +122,7 @@ export default function Dashboard({ crops }) {
 export async function getServerSideProps(ctx) {
 
     // request crop data from api
-    let cropRes = await fetch(`${server}/api/crops`)
+    let cropRes = await fetch(`${server}/api/getCrops`)
     let reportRes = await fetch(`${server}/api/reports`)
 
     // extract the data

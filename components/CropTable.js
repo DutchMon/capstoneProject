@@ -10,9 +10,12 @@ export default function CropTable({ crop }) {
     const [deleting, setDeleting] = useState(false)
     const router = useRouter()
 
-    let hydrationArrayLastVal = crop.hydrationArray[crop.hydrationArray.length-1]
-    let infestationArrayLastVal = crop.infestationArray[crop.infestationArray.length-1]
-    let created =  new Date(crop.initialCreation).toDateString()
+    console.log('%%%%%%%%%%%%%%%%  ', crop)
+
+    //let hydrationArrayLastVal = crop.hydrationArray[crop.hydrationArray.length-1]
+    //let infestationArrayLastVal = crop.infestationArray[crop.infestationArray.length-1]
+    let created =  new Date(crop.creationDate).toDateString()
+    console.log('@@@@@@@@@@@@@   ', created)
 
     // Delete crop post
     const deleteCrop = async (cropId) => {
@@ -60,8 +63,8 @@ export default function CropTable({ crop }) {
         <>
             <tr className="has-text-centered" key={crop._id}>
                 <td data-label="Name">{crop.cropName}</td>
-                <td data-label="Hydration">{hydrationArrayLastVal}</td>
-                <td data-label="Infestation">{infestationArrayLastVal}</td>
+                <td data-label="Hydration">40%</td>
+                <td data-label="Infestation">50%</td>
                 <td data-label="Created">
                     <small className="has-text-grey is-abbr-like" title="Date">{created}</small>
                 </td>
