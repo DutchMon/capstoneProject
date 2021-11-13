@@ -68,105 +68,107 @@ export default function EditReport({ reportObject }) {
 
 
     return (
-        <div className="column is-full is-centered">
-            <form className="sliderForm" onSubmit={handlePost}>
-                {error ? (
-                    <div className="field">
-                        <h3 className="help is-danger">{error}</h3>
-                    </div>
-                ) : null}
-                {message ? (
-                    <div className="field">
-                        <h3>{message}</h3>
-                    </div>
-                ) : null}
-                <div className="column is-full is-vcentered has-text-centered">
-                    <h1 className="title is-2 is-spaced">{reportName}</h1>
-                </div>
-                <hr />
-                <div className="field is-horizontal">
-                    <div className="field-label is-normal">
-                        <label className="label">Report Name</label>
-                    </div>
-                    <div className="field-body">
-                        <fieldset disabled>
-                            <div className="field">
-                                <p className="control is-expanded">
-                                    <input
-                                        className="input"
-                                        type="text"
-                                        name="reportName"
-                                        onChange={(e) => setReportName(e.target.value)}
-                                        value={reportName}
-                                        placeholder="Name the Report"
-                                    />
-                                </p>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-                <div className="field is-horizontal">
-                    <div className="field-label is-normal">
-                        <label className="label">Notes</label>
-                    </div>
-                    <div className="field-body">
+        <section className="box opacityLayer contentHeight">
+            <div className="column is-full is-centered">
+                <form className="sliderForm" onSubmit={handlePost}>
+                    {error ? (
                         <div className="field">
-                            <div className="control is-expanded">
-                                <textarea
-                                    className="textarea"
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    value={description}
-                                    placeholder="Include a note here"
-                                />
+                            <h3 className="help is-danger">{error}</h3>
+                        </div>
+                    ) : null}
+                    {message ? (
+                        <div className="field">
+                            <h3>{message}</h3>
+                        </div>
+                    ) : null}
+                    <div className="column is-full is-vcentered has-text-centered">
+                        <h1 className="title is-2 is-spaced">{reportName}</h1>
+                    </div>
+                    <hr />
+                    <div className="field is-horizontal">
+                        <div className="field-label is-normal">
+                            <label className="label">Report Name</label>
+                        </div>
+                        <div className="field-body">
+                            <fieldset disabled>
+                                <div className="field">
+                                    <p className="control is-expanded">
+                                        <input
+                                            className="input"
+                                            type="text"
+                                            name="reportName"
+                                            onChange={(e) => setReportName(e.target.value)}
+                                            value={reportName}
+                                            placeholder="Name the Report"
+                                        />
+                                    </p>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div className="field is-horizontal">
+                        <div className="field-label is-normal">
+                            <label className="label">Notes</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field">
+                                <div className="control is-expanded">
+                                    <textarea
+                                        className="textarea"
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        value={description}
+                                        placeholder="Include a note here"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="field is-horizontal">
-                    <div className="field-label is-normal">
-                        <label className="label">Expected Yield</label>
-                    </div>
-                    <div className="field-body">
-                        <div className="field has-addons">
-                            <div className="control">
-                                <output className="slider sliderOutput" htmlFor="sliderWithValue">{expectedYield}%</output>
-                            </div>
-                            <div className="control is-expanded">
-                                <input
-                                    id="ExpectedYield"
-                                    className="slider has-output is-fullwidth"
-                                    onChange={(e) => setExpectedYield(e.target.valueAsNumber)}
-                                    min="0"
-                                    max="100"
-                                    value={expectedYield}
-                                    step="1"
-                                    type="range"
-                                />
-                            </div>
-                            <div className="control">
-                                <label className="label slider">Recorded on</label>
-                            </div>
-                            <div className="control">
-                                <DatePicker
-                                    className="slider sliderCalendar"
-                                    selected={expectedYieldDate}
-                                    onChange={(date) => setExpectedYieldDate(date)}
-                                    monthsShown={2}
-                                />
+                    <div className="field is-horizontal">
+                        <div className="field-label is-normal">
+                            <label className="label">Expected Yield</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field has-addons">
+                                <div className="control">
+                                    <output className="slider sliderOutput" htmlFor="sliderWithValue">{expectedYield}%</output>
+                                </div>
+                                <div className="control is-expanded">
+                                    <input
+                                        id="ExpectedYield"
+                                        className="slider has-output is-fullwidth"
+                                        onChange={(e) => setExpectedYield(e.target.valueAsNumber)}
+                                        min="0"
+                                        max="100"
+                                        value={expectedYield}
+                                        step="1"
+                                        type="range"
+                                    />
+                                </div>
+                                <div className="control">
+                                    <label className="label slider">Recorded on</label>
+                                </div>
+                                <div className="control">
+                                    <DatePicker
+                                        className="slider sliderCalendar"
+                                        selected={expectedYieldDate}
+                                        onChange={(date) => setExpectedYieldDate(date)}
+                                        monthsShown={2}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr />
-                <div className="field is-grouped is-grouped-centered">
-                    <div className="control">
-                        <button className="button is-link" type="submit">Submit</button>
+                    <hr />
+                    <div className="field is-grouped is-grouped-centered">
+                        <div className="control">
+                            <button className="button is-link" type="submit">Submit</button>
+                        </div>
+                        <div className="control">
+                            <a className="button is-dark" href="/reports">Cancel</a>
+                        </div>
                     </div>
-                    <div className="control">
-                        <a className="button is-dark" href="/reports">Cancel</a>
-                    </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        </section>
     )
 }
