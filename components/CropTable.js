@@ -10,7 +10,6 @@ export default function CropTable({ crop }) {
     const [deleting, setDeleting] = useState(false)
     const router = useRouter()
 
-    console.log('%%%%%%%%%%%%%%%%  ', crop)
 
     //let hydrationArrayLastVal = crop.hydrationArray[crop.hydrationArray.length-1]
     //let infestationArrayLastVal = crop.infestationArray[crop.infestationArray.length-1]
@@ -92,33 +91,3 @@ export default function CropTable({ crop }) {
     );
 }
 
-
-/*
-
-
-<button className="button is-small is-link" type="button" onClick={() => editCrop(crop['_id'])}>
-    <span>
-        <FontAwesomeIcon icon={faPenToSquare} />
-    </span>
-</button>
-
-    <li key={crop._id}>
-        <h3>{crop.cropName}</h3>
-        <p>{crop.content}</p>
-        <small>{new Date(crop.createdAt).toLocaleDateString()}</small>
-        <br />
-        <div className="field is-grouped">
-            <div className="control">
-                <button className="button is-link" type="button" onClick={() => editCrop(crop['_id'])}>
-                    {editing ? 'Editing' : 'Edit'}
-                </button>
-            </div>
-            <div className="control">
-                <button className="button is-link" type="button" onClick={() => deleteCrop(crop['_id'])}>
-                    {deleting ? 'Deleting' : 'Delete'}
-                </button>
-            </div>
-        </div>
-
-    </li>
-*/

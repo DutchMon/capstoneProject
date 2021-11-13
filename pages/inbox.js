@@ -1,14 +1,24 @@
 /*____________Imports_________________*/
 
 import Layout from '../components/layout'
-import InboxContent from '../components/pageContent/InboxContent'
-
 /*____________________________________*/
 
 
-const  Home = () => (
+const Home = () => (
     <Layout>
-        <InboxContent></InboxContent>
+        <section className="hero box opacityLayer contentHeight">
+            <div className="hero-body">
+                <div className="container">
+                    <p className="title is-size-2 is-spaced">
+                        Inbox
+                    </p>
+                    <hr />
+                    <div className="content">
+                        <p> Content would be here</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </Layout>
 )
 

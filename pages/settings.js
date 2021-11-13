@@ -1,14 +1,24 @@
 /*____________Imports_________________*/
 
 import Layout from '../components/layout'
-import SettingsContent from '../components/pageContent/SettingsContent'
-
 /*____________________________________*/
 
 
 const  Home = () => (
     <Layout>
-        <SettingsContent></SettingsContent>
+        <section className="hero box opacityLayer contentHeight">
+            <div className="hero-body">
+                <div className="container">
+                    <p className="title is-size-2 is-spaced">
+                        Settings
+                    </p>
+                    <hr />
+                    <div className="content">
+                        <p> Content would be here</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </Layout>
 )
 

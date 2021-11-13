@@ -67,8 +67,7 @@ export default function EditCrop({ cropObject }) {
             return (
                 router.push({
                 pathname: '/cropAnalytics'
-            }),
-            console.log("YUOU DID IT")
+            })
             )
         } else {
             // set the error

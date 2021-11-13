@@ -11,7 +11,7 @@ export default function CropTable({ report }) {
 
     let reportYield = report.expectedYieldArray[report.expectedYieldArray.length-1]
     let created =  new Date(report.initialCreation).toDateString()
-    console.log(report)
+    //console.log(report)
 
     // Delete crop post
     const deleteReport = async (reportId) => {
@@ -50,8 +50,7 @@ export default function CropTable({ report }) {
             router.push({
                 pathname: '/editReport',
                 query: reportResponse.report[0]
-            }),
-            console.log(reportResponse.report[0])
+            })
             )
         } catch (error) {
             return console.log("Error:", error)
